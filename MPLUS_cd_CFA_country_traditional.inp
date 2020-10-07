@@ -1,0 +1,74 @@
+Title: per management-measurement invariance
+
+Data: File is "measurement_invariance.dat";
+Define:ID = ID/100;
+
+Variable:
+
+NAMES ARE
+ID country coungen
+w1op1 w1op2 w1op3 w1op4 w1op5 w1op6 w1op7 w1op8 w1op9
+w1op10 w1op11 w1op12 w1op13 w1op14 w1op15 w1op16
+w1mop1 w1mop2 w1mop3 w1mop4 w1mop5 w1mop6 w1mop7 w1mop8 w1mop9
+w1mop10 w1mop11 w1mop12 w1mop13 w1mop14
+w2op1 w2op2 w2op3 w2op4 w2op5 w2op6 w2op7 w2op8 w2op9
+w2op10 w2op11 w2op12 w2op13 w2op14 w2op15 w2op16
+w2mop1 w2mop2 w2mop3 w2mop4 w2mop5 w2mop6 w2mop7 w2mop8 w2mop9
+w2mop10 w2mop11 w2mop12 w2mop13 w2mop14
+w3op1 w3op2 w3op3 w3op4 w3op5 w3op6 w3op7 w3op8 w3op9
+w3op10 w3op11 w3op12 w3op13 w3op14 w3op15 w3op16
+w3mop1 w3mop2 w3mop3 w3mop4 w3mop5 w3mop6 w3mop7 w3mop8 w3mop9
+w3mop10 w3mop11 w3mop12 w3mop13 w3mop14;
+
+
+USEVARIABLES = w1mop5 w1mop6 w1mop7 w1mop8 w1mop9 w1mop10
+w2mop5 w2mop6 w2mop7 w2mop8 w2mop9 w2mop10
+w3mop5 w3mop6 w3mop7 w3mop8 w3mop9 w3mop10;
+
+Grouping is country(1=US 2=CHINA);
+
+MISSING = ALL(-99);
+
+!ANALYSIS:
+!ESTIMATOR = MLR; 
+
+Model:
+prcd1 by w1mop5 w1mop7 w1mop6 w1mop8 w1mop9 w1mop10;
+[prcd1@0];
+prcd2 by w2mop5 w2mop7 w2mop6 w2mop8 w2mop9 w2mop10;
+[prcd2@0];
+prcd3 by w3mop5 w3mop7 w3mop6 w3mop8 w3mop9 w3mop10;
+[prcd3@0];
+prcd1 with prcd2;
+prcd3 with prcd1 prcd2;
+
+
+w3mop10 with w2mop10 w1mop10;
+w1mop10 with w2mop10;
+w3mop9 with w2mop9 w1mop9;
+w1mop9 with w2mop9;
+w3mop8 with w2mop8 w1mop8;
+w1mop8 with w2mop8;
+w3mop7 with w2mop7 w1mop7;
+w1mop7 with w2mop7;
+w3mop6 with w2mop6 w1mop6;
+w1mop6 with w2mop6;
+w3mop5 with w2mop5 w1mop5;
+w1mop5 with w2mop5;
+
+MODEL US:
+!prcd1 by w1mop7 w1mop6 w1mop8 w1mop9 w1mop10;
+![w1mop7 w1mop5 w1mop6 w1mop8 w1mop9 w1mop10];
+[w1mop5 w1mop10];
+![w1mop8];
+!prcd2 by w2mop7 w2mop6 w2mop8 w2mop9 w2mop10;
+![w2mop7 w2mop5 w2mop6 w2mop8 w2mop9 w2mop10];
+[w2mop5 w2mop10];
+![w2mop8];
+!prcd3 by w3mop7 w3mop6 w3mop8 w3mop9 w3mop10;
+![w3mop7 w3mop5 w3mop6 w3mop8 w3mop9 w3mop10];
+[w3mop5 w3mop10];
+![w3mop8];
+
+Output:
+MODINDICES(all 3.84);

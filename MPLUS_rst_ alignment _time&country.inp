@@ -1,0 +1,37 @@
+Title: peer management_measurement_invariance_alignment
+
+Data: File is "measurement_invariance_long.csv";
+Define:ID = ID/100;
+
+Variable:
+
+NAMES ARE
+ID country coungen wave
+op1 op2 op3 op4 op5 op6 op7 op8 op9
+op10 op11 op12 op13 op14 op15 op16
+mop1 mop2 mop3 mop4 mop5 mop6 mop7 mop8 mop9
+mop10 mop11 mop12 mop13 mop14 class;
+
+
+USEVARIABLES = op1 op2 op3 op4 op5 op6 op7 op8;
+
+!1,2,3 correspond to US wave 1,2,3; 4,5,6 correspond to CN wave 1,2,3;
+
+MISSING = ALL(-99);
+CLASSES= c(6);
+KNOWNCLASS = c(class = 1 2 3 4 5 6);
+
+ANALYSIS:
+TYPE=MIXTURE;
+ESTIMATOR=ML;
+!ALIGNMENT=FREE;
+ALIGNMENT=FIXED(1);
+Model:
+%OVERALL%
+PRRST BY op1-op8;
+
+
+Output:
+TECH1 TECH8 ALIGN SVALUES;
+SAVEDATA: 
+RANKINGS = ranktable.csv;
