@@ -1,0 +1,3597 @@
+Title: pisa_invariance_alignment
+
+Data: File is "align_data.csv";
+
+Variable:
+
+NAMES ARE
+CNTRYID CNT CNTSCHID CNTSTUID STRATUM OECD
+ST001D01T ST003D02T ST003D03T ST004D01T ST005Q01TA
+s123q1n1 s123q1n2 s123q1n3 s123q1n4 
+st118q1n1 st118q1n2 st118q1n3 st118q1n4 st118q1n5
+st119q1n1 st119q1n2 st119q1n3 st119q1n4 st119q1n5 
+AGE HISCED ANXTEST MOTIVAT EMOSUPS ESCS W_FSTUWT
+PV1MATH PV2MATH PV3MATH PV1READ PV2READ PV3READ
+IND GDPPP15 GDPGROW;
+
+
+USEVARIABLES = st118q1n1 st118q1n2 st118q1n3 st118q1n4 st118q1n5
+st119q1n1 st119q1n2 st119q1n3 st119q1n4 st119q1n5
+s123q1n1 s123q1n2 s123q1n3 s123q1n4 ESCS W_FSTUWT CNTSCHID;
+
+MISSING = ALL(99);
+ 
+CLUSTER = CNTSCHID;
+WEIGHT=W_FSTUWT;
+
+grouping = CNTRYID(36 40 56 76 100 124
+152 158 170 188 191 203 208 214
+233 246 250 276 300 344 348 352
+372 380 392 410 428 440 442 446 
+484 499 528 554 578 604 616 620
+634 643 702 703 705 724 752 756
+764 784 788 792 826 840 858 970
+971 972 973);
+
+
+ANALYSIS:
+TYPE= COMPLEX;
+ESTIMATOR=ML;
+PROCESSORS=6;
+!ALIGNMENT=FREE;
+!ALIGNMENT=FIXED(36);
+!ALGORITHM=INTEGRATION;
+
+Model:
+!%OVERALL%
+
+     anx BY st118q1n1;
+     anx BY st118q1n2;
+     anx BY st118q1n3;
+     anx BY st118q1n4;
+     anx BY st118q1n5;
+     mot BY st119q1n1;
+     mot BY st119q1n2;
+     mot BY st119q1n3;
+     mot BY st119q1n4;
+     mot BY st119q1n5;
+     sup BY s123q1n1;
+     sup BY s123q1n2;
+     sup BY s123q1n3;
+     sup BY s123q1n4;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+
+
+model 36:
+
+     anx BY st118q1n1@0.57515;
+     anx BY st118q1n2*0.54659;
+     anx BY st118q1n3*0.67106;
+     anx BY st118q1n4*0.66304;
+     anx BY st118q1n5*0.59860;
+     mot BY st119q1n1@0.53477;
+     mot BY st119q1n2*0.42104;
+     mot BY st119q1n3*0.51254;
+     mot BY st119q1n4*0.46003;
+     mot BY st119q1n5*0.64952;
+    sup BY s123q1n1@0.48393;
+     sup BY s123q1n2*0.48162;
+     sup BY s123q1n3*0.58312;
+     sup BY s123q1n4*0.54076;
+
+     st118q1n1 WITH st118q1n2*0.10900;
+     st119q1n1 WITH st119q1n2*0.05442;
+
+
+     [ st118q1n1@2.68904 ];
+     [ st118q1n2*2.78437 ];
+     [ st118q1n3*2.82383 ];
+     [ st118q1n4*2.47746 ];
+     [ st118q1n5*2.69610 ];
+     [ st119q1n1@3.32035 ];
+     [ st119q1n2*3.50675 ];
+     [ st119q1n3*3.30857 ];
+     [ st119q1n4*3.06605 ];
+     [ st119q1n5*3.00836 ];
+     [ s123q1n1@3.43972 ];
+     [ s123q1n2*3.59713 ];
+     [ s123q1n3*3.40125 ];
+     [ s123q1n4*3.49003 ];
+     [ anx*0 ];
+     [ mot*0 ];
+    [ sup*0 ];
+
+     st118q1n1*0.32744;
+     st118q1n2*0.40632;
+     st118q1n3*0.28591;
+     st118q1n4*0.31028;
+     st118q1n5*0.37525;
+     st119q1n1*0.20868;
+     st119q1n2*0.19580;
+     st119q1n3*0.26914;
+     st119q1n4*0.30837;
+     st119q1n5*0.23481;
+    s123q1n1*0.19902;
+     s123q1n2*0.13490;
+    s123q1n3*0.16361;
+     s123q1n4*0.15599;
+     anx*1;
+     mot*1;
+     sup*1;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 40:
+
+     anx BY st118q1n1@0.59849;
+     anx BY st118q1n2*0.56892;
+     anx BY st118q1n3*0.74505;
+     anx BY st118q1n4*0.48553;
+     anx BY st118q1n5*0.53712;
+     mot BY st119q1n1@0.48789;
+     mot BY st119q1n2*0.28660;
+     mot BY st119q1n3*0.62563;
+     mot BY st119q1n4*0.40177;
+     mot BY st119q1n5*0.73436;
+     sup BY s123q1n1@0.42873;
+     sup BY s123q1n2*0.56484;
+     sup BY s123q1n3*0.56915;
+     sup BY s123q1n4*0.53154;
+
+     st118q1n1 WITH st118q1n2*0.13279;
+     st119q1n1 WITH st119q1n2*0.11252;
+
+
+     [ st118q1n1@3.05072 ];
+     [ st118q1n2*3.03515 ];
+     [ st118q1n3*2.83331 ];
+     [ st118q1n4*1.98697 ];
+     [ st118q1n5*2.57939 ];
+     [ st119q1n1@3.79914 ];
+     [ st119q1n2*3.89090 ];
+     [ st119q1n3*3.31051 ];
+     [ st119q1n4*3.38402 ];
+     [ st119q1n5*3.46962 ];
+     [ s123q1n1@3.64783 ];
+     [ s123q1n2*3.45333 ];
+     [ s123q1n3*3.53442 ];
+     [ s123q1n4*3.46326 ];
+     [ anx*-0.42666 ];
+     [ mot*-1.38213 ];
+     [ sup*0.10104 ];
+
+     st118q1n1*0.37385;
+     st118q1n2*0.45173;
+     st118q1n3*0.36023;
+     st118q1n4*0.51034;
+     st118q1n5*0.63967;
+     st119q1n1*0.43231;
+     st119q1n2*0.36329;
+     st119q1n3*0.39068;
+     st119q1n4*0.61112;
+     st119q1n5*0.31686;
+     s123q1n1*0.17572;
+     s123q1n2*0.22232;
+     s123q1n3*0.22367;
+     s123q1n4*0.33233;
+     anx*1.26766;
+     mot*1.30383;
+     sup*0.85842;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 56:
+
+     anx BY st118q1n1@0.62697;
+     anx BY st118q1n2*0.57237;
+     anx BY st118q1n3*0.69772;
+     anx BY st118q1n4*0.49440;
+     anx BY st118q1n5*0.54883;
+     mot BY st119q1n1@0.50330;
+     mot BY st119q1n2*0.30957;
+     mot BY st119q1n3*0.67317;
+     mot BY st119q1n4*0.42186;
+     mot BY st119q1n5*0.64329;
+     sup BY s123q1n1@0.44937;
+     sup BY s123q1n2*0.51246;
+     sup BY s123q1n3*0.56579;
+     sup BY s123q1n4*0.56467;
+
+     st118q1n1 WITH st118q1n2*0.10204;
+     st119q1n1 WITH st119q1n2*0.09374;
+
+     [ st118q1n1@2.89385 ];
+     [ st118q1n2*3.03079 ];
+     [ st118q1n3*2.70592 ];
+     [ st118q1n4*2.35072 ];
+     [ st118q1n5*2.85423 ];
+     [ st119q1n1@3.79160 ];
+     [ st119q1n2*3.85810 ];
+     [ st119q1n3*3.52811 ];
+     [ st119q1n4*3.41017 ];
+     [ st119q1n5*3.45536 ];
+     [ s123q1n1@3.49934 ];
+     [ s123q1n2*3.58669 ];
+     [ s123q1n3*3.50602 ];
+     [ s123q1n4*3.46211 ];
+     [ anx*-0.53941 ];
+     [ mot*-1.70110 ];
+    [ sup*-0.17997 ];
+
+     st118q1n1*0.32728;
+     st118q1n2*0.37085;
+     st118q1n3*0.31576;
+     st118q1n4*0.46367;
+     st118q1n5*0.54629;
+     st119q1n1*0.39944;
+     st119q1n2*0.33532;
+     st119q1n3*0.28417;
+     st119q1n4*0.42150;
+     st119q1n5*0.35186;
+    s123q1n1*0.23967;
+     s123q1n2*0.15665;
+     s123q1n3*0.18069;
+     s123q1n4*0.23975;
+     anx*1.15424;
+     mot*1.02619;
+    sup*0.95289;
+mot on sup;
+anx on sup;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 76:
+
+     anx BY st118q1n1@0.46301;
+     anx BY st118q1n2*0.36849;
+     anx BY st118q1n3*0.68453;
+     anx BY st118q1n4*0.69270;
+     anx BY st118q1n5*0.64497;
+     mot BY st119q1n1@0.48147;
+     mot BY st119q1n2*0.45453;
+     mot BY st119q1n3*0.61441;
+     mot BY st119q1n4*0.38736;
+     mot BY st119q1n5*0.61582;
+     sup BY s123q1n1@0.51076;
+     sup BY s123q1n2*0.50829;
+     sup BY s123q1n3*0.54411;
+     sup BY s123q1n4*0.53415;
+
+     st118q1n1 WITH st118q1n2*0.06181;
+     st119q1n1 WITH st119q1n2*0.07555;
+
+
+     [ st118q1n1@2.78807 ];
+     [ st118q1n2*3.24299 ];
+     [ st118q1n3*2.81361 ];
+     [ st118q1n4*2.37293 ];
+     [ st118q1n5*2.74164 ];
+     [ st119q1n1@3.80026 ];
+     [ st119q1n2*3.85854 ];
+     [ st119q1n3*3.59073 ];
+     [ st119q1n4*2.60885 ];
+     [ st119q1n5*3.21804 ];
+    [ s123q1n1@3.53285 ];
+     [ s123q1n2*3.58479 ];
+     [ s123q1n3*3.39968 ];
+     [ s123q1n4*3.52456 ];
+     [ anx*0.35467 ];
+     [ mot*-0.70979 ];
+     [ sup*-0.24222 ];
+
+     st118q1n1*0.45333;
+     st118q1n2*0.36803;
+     st118q1n3*0.33364;
+     st118q1n4*0.43668;
+     st118q1n5*0.48963;
+     st119q1n1*0.24624;
+     st119q1n2*0.22578;
+     st119q1n3*0.41859;
+     st119q1n4*0.77979;
+     st119q1n5*0.49270;
+    s123q1n1*0.21668;
+    s123q1n2*0.16030;
+    s123q1n3*0.28624;
+    s123q1n4*0.24853;
+     anx*0.66783;
+     mot*0.64158;
+     sup*0.96160;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 100:
+
+     anx BY st118q1n1@0.59426;
+     anx BY st118q1n2*0.56806;
+     anx BY st118q1n3*0.68188;
+     anx BY st118q1n4*0.63951;
+     anx BY st118q1n5*0.57818;
+     mot BY st119q1n1@0.57410;
+     mot BY st119q1n2*0.41272;
+     mot BY st119q1n3*0.58300;
+     mot BY st119q1n4*0.41750;
+     mot BY st119q1n5*0.63094;
+     sup BY s123q1n1@0.46013;
+     sup BY s123q1n2*0.53600;
+     sup BY s123q1n3*0.57030;
+     sup BY s123q1n4*0.53433;
+
+     st118q1n1 WITH st118q1n2*0.07887;
+     st119q1n1 WITH st119q1n2*0.06033;
+
+
+     [ st118q1n1@2.67605 ];
+     [ st118q1n2*2.84484 ];
+     [ st118q1n3*2.78437 ];
+     [ st118q1n4*2.62537 ];
+     [ st118q1n5*2.91271 ];
+     [ st119q1n1@3.69223 ];
+     [ st119q1n2*3.86216 ];
+     [ st119q1n3*3.36244 ];
+     [ st119q1n4*3.49980 ];
+     [ st119q1n5*3.53031 ];
+    [ s123q1n1@3.49347 ];
+     [ s123q1n2*3.49520 ];
+     [ s123q1n3*3.48198 ];
+     [ s123q1n4*3.56703 ];
+     [ anx*-0.42648 ];
+     [ mot*-1.12418 ];
+     ![ sup*-0.18357 ];
+
+     st118q1n1*0.44824;
+     st118q1n2*0.42686;
+     st118q1n3*0.35302;
+     st118q1n4*0.36643;
+     st118q1n5*0.56346;
+     st119q1n1*0.30430;
+     st119q1n2*0.26303;
+     st119q1n3*0.42350;
+     st119q1n4*0.37119;
+     st119q1n5*0.29518;
+     s123q1n1*0.30038;
+     s123q1n2*0.18137;
+     s123q1n3*0.17470;
+     s123q1n4*0.19390;
+     anx*1.18287;
+     mot*1.19171;
+     sup*1.14154;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 124:
+
+     anx BY st118q1n1@0.60857;
+     anx BY st118q1n2*0.55088;
+     anx BY st118q1n3*0.67455;
+     anx BY st118q1n4*0.63271;
+     anx BY st118q1n5*0.57228;
+     mot BY st119q1n1@0.47208;
+     mot BY st119q1n2*0.39728;
+     mot BY st119q1n3*0.58416;
+     mot BY st119q1n4*0.46847;
+     mot BY st119q1n5*0.67608;
+     sup BY s123q1n1@0.47307;
+     sup BY s123q1n2*0.48166;
+     sup BY s123q1n3*0.58777;
+     sup BY s123q1n4*0.54473;
+
+     st118q1n1 WITH st118q1n2*0.13119;
+     st119q1n1 WITH st119q1n2*0.09464;
+
+
+     [ st118q1n1@2.73158 ];
+     [ st118q1n2*2.83359 ];
+     [ st118q1n3*2.84585 ];
+     [ st118q1n4*2.51562 ];
+     [ st118q1n5*2.82341 ];
+     [ st119q1n1@3.68929 ];
+     [ st119q1n2*3.80607 ];
+     [ st119q1n3*3.64638 ];
+     [ st119q1n4*3.45998 ];
+     [ st119q1n5*3.50857 ];
+     [ s123q1n1@3.42270 ];
+     [ s123q1n2*3.63809 ];
+     [ s123q1n3*3.42222 ];
+     [ s123q1n4*3.50983 ];
+     [ anx*-0.11928 ];
+     [ mot*-0.74356 ];
+     [ sup*-0.06579 ];
+
+     st118q1n1*0.33187;
+     st118q1n2*0.44682;
+     st118q1n3*0.32325;
+     st118q1n4*0.39411;
+     st118q1n5*0.44003;
+     st119q1n1*0.27323;
+     st119q1n2*0.20978;
+     st119q1n3*0.27730;
+     st119q1n4*0.31158;
+     st119q1n5*0.24965;
+     s123q1n1*0.23350;
+     s123q1n2*0.13601;
+     s123q1n3*0.16102;
+     s123q1n4*0.17065;
+     anx*1.17236;
+     mot*1.06240;
+     sup*1.11924;
+
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 152:
+
+     anx BY st118q1n1@0.54122;
+     anx BY st118q1n2*0.42464;
+     anx BY st118q1n3*0.70435;
+     anx BY st118q1n4*0.67355;
+     anx BY st118q1n5*0.63710;
+     mot BY st119q1n1@0.47706;
+     mot BY st119q1n2*0.40669;
+     mot BY st119q1n3*0.61897;
+     mot BY st119q1n4*0.47799;
+     mot BY st119q1n5*0.62368;
+     sup BY s123q1n1@0.48799;
+     sup BY s123q1n2*0.52420;
+     sup BY s123q1n3*0.54061;
+     sup BY s123q1n4*0.54555;
+
+     st118q1n1 WITH st118q1n2*0.04851;
+     st119q1n1 WITH st119q1n2*0.08987;
+
+
+     [ st118q1n1@2.77234 ];
+     [ st118q1n2*3.23995 ];
+     [ st118q1n3*2.76420 ];
+     [ st118q1n4*2.46973 ];
+     [ st118q1n5*2.74212 ];
+     [ st119q1n1@3.73962 ];
+     [ st119q1n2*3.87430 ];
+     [ st119q1n3*3.65666 ];
+     [ st119q1n4*3.23119 ];
+     [ st119q1n5*3.36924 ];
+     [ s123q1n1@3.50398 ];
+     [ s123q1n2*3.57759 ];
+     [ s123q1n3*3.49407 ];
+     [ s123q1n4*3.47995 ];
+     [ anx*-0.28299 ];
+     [ mot*-0.69790 ];
+     [ sup*-0.22169 ];
+
+     st118q1n1*0.37769;
+     st118q1n2*0.53271;
+     st118q1n3*0.40147;
+     st118q1n4*0.40765;
+     st118q1n5*0.54882;
+     st119q1n1*0.26012;
+     st119q1n2*0.23237;
+     st119q1n3*0.24231;
+     st119q1n4*0.57997;
+     st119q1n5*0.31203;
+     s123q1n1*0.20910;
+     s123q1n2*0.14302;
+     s123q1n3*0.16800;
+     s123q1n4*0.20686;
+     anx*0.99634;
+     mot*0.98593;
+     sup*1.72671;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+ model 158:
+     anx BY st118q1n1@0.54435;
+     anx BY st118q1n2*0.55515;
+     anx BY st118q1n3*0.71900;
+     anx BY st118q1n4*0.70414;
+     anx BY st118q1n5*0.49558;
+     mot BY st119q1n1@0.53267;
+     mot BY st119q1n2*0.36203;
+     mot BY st119q1n3*0.56949;
+     mot BY st119q1n4*0.48350;
+     mot BY st119q1n5*0.62191;
+     sup BY s123q1n1@0.41110;
+     sup BY s123q1n2*0.48382;
+     sup BY s123q1n3*0.58052;
+     sup BY s123q1n4*0.59483;
+
+     st118q1n1 WITH st118q1n2*0.10764;
+     st119q1n1 WITH st119q1n2*0.04856;
+
+
+     [ st118q1n1@2.81067 ];
+     [ st118q1n2*2.98002 ];
+     [ st118q1n3*2.68822 ];
+     [ st118q1n4*2.61258 ];
+     [ st118q1n5*2.71302 ];
+     [ st119q1n1@3.66325 ];
+     [ st119q1n2*3.89844 ];
+     [ st119q1n3*3.50587 ];
+     [ st119q1n4*3.45132 ];
+     [ st119q1n5*3.52545 ];
+     [ s123q1n1@3.20023 ];
+     [ s123q1n2*3.52831 ];
+     [ s123q1n3*3.55547 ];
+     [ s123q1n4*3.50590 ];
+     [ anx*0.13629 ];
+     [ mot*-1.09757 ];
+     [ sup*-0.49366 ];
+
+     st118q1n1*0.34363;
+     st118q1n2*0.32128;
+     st118q1n3*0.20225;
+     st118q1n4*0.25906;
+     st118q1n5*0.44802;
+     st119q1n1*0.31600;
+     st119q1n2*0.20661;
+     st119q1n3*0.28102;
+     st119q1n4*0.35255;
+     st119q1n5*0.28053;
+     s123q1n1*0.26600;
+     s123q1n2*0.19337;
+     s123q1n3*0.10640;
+     s123q1n4*0.13697;
+     anx*0.86105;
+     mot*0.93656;
+     sup*0.96974;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 170:
+
+     anx BY st118q1n1@0.57136;
+     anx BY st118q1n2*0.54951;
+     anx BY st118q1n3*0.62006;
+     anx BY st118q1n4*0.61738;
+     anx BY st118q1n5*0.79288;
+     mot BY st119q1n1@0.54497;
+     mot BY st119q1n2*0.41760;
+     mot BY st119q1n3*0.57742;
+     mot BY st119q1n4*0.17572;
+     mot BY st119q1n5*0.62253;
+     sup BY s123q1n1@0.48991;
+     sup BY s123q1n2*0.50635;
+     sup BY s123q1n3*0.53091;
+     sup BY s123q1n4*0.56443;
+
+     st118q1n1 WITH st118q1n2*0.03015;
+     st119q1n1 WITH st119q1n2*0.01484;
+
+
+     [ st118q1n1@2.69535 ];
+     [ st118q1n2*3.16292 ];
+     [ st118q1n3*2.84736 ];
+     [ st118q1n4*2.47349 ];
+     [ st118q1n5*2.70955 ];
+     [ st119q1n1@3.72434 ];
+     [ st119q1n2*3.84296 ];
+     [ st119q1n3*3.57954 ];
+     [ st119q1n4*2.36130 ];
+     [ st119q1n5*3.53280 ];
+     [ s123q1n1@3.55758 ];
+     [ s123q1n2*3.58217 ];
+     [ s123q1n3*3.41783 ];
+     [ s123q1n4*3.49781 ];
+     [ anx*0.28132 ];
+     [ mot*-0.29022 ];
+     [ sup*-0.21278 ];
+
+     st118q1n1*0.47609;
+     st118q1n2*0.58574;
+     st118q1n3*0.45402;
+     st118q1n4*0.64718;
+     st118q1n5*0.54835;
+     st119q1n1*0.16163;
+     st119q1n2*0.15526;
+     st119q1n3*0.24277;
+     st119q1n4*0.93096;
+     st119q1n5*0.20312;
+     s123q1n1*0.20254;
+     s123q1n2*0.16758;
+    s123q1n3*0.25365;
+    s123q1n4*0.23332;
+     anx*0.44029;
+     mot*0.64487;
+     sup*1.25719;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 188:
+
+     anx BY st118q1n1@0.52755;
+     anx BY st118q1n2*0.29883;
+     anx BY st118q1n3*0.47570;
+     anx BY st118q1n4*0.75025;
+     anx BY st118q1n5*0.71447;
+     mot BY st119q1n1@0.41211;
+     mot BY st119q1n2*0.38255;
+     mot BY st119q1n3*0.65023;
+     mot BY st119q1n4*0.45050;
+     mot BY st119q1n5*0.69916;
+     sup BY s123q1n1@0.46685;
+     sup BY s123q1n2*0.51662;
+     sup BY s123q1n3*0.52556;
+     sup BY s123q1n4*0.59238;
+
+     st118q1n1 WITH st118q1n2*0.07984;
+     st119q1n1 WITH st119q1n2*0.05562;
+
+
+     [ st118q1n1@2.85279 ];
+     [ st118q1n2*3.38216 ];
+     [ st118q1n3*2.97253 ];
+     [ st118q1n4*2.44794 ];
+     [ st118q1n5*2.54776 ];
+     [ st119q1n1@3.84803 ];
+     [ st119q1n2*3.84225 ];
+     [ st119q1n3*3.49476 ];
+     [ st119q1n4*2.72122 ];
+     [ st119q1n5*3.50645 ];
+     [ s123q1n1@3.54584 ];
+     [ s123q1n2*3.55592 ];
+     [ s123q1n3*3.56760 ];
+     [ s123q1n4*3.43140 ];
+     [ anx*0.24349 ];
+     [ mot*-0.36958 ];
+     [ sup*0.16774 ];
+
+     st118q1n1*0.44525;
+     st118q1n2*0.49357;
+     st118q1n3*0.47436;
+     st118q1n4*0.52202;
+     st118q1n5*0.56591;
+     st119q1n1*0.18013;
+     st119q1n2*0.18842;
+     st119q1n3*0.34190;
+     st119q1n4*0.86899;
+     st119q1n5*0.26463;
+     s123q1n1*0.18336;
+     s123q1n2*0.11217;
+     s123q1n3*0.12365;
+     s123q1n4*0.16839;
+     anx*0.83601;
+     mot*0.64245;
+     sup*1.09648;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+model 191:
+
+     anx BY st118q1n1@0.54548;
+     anx BY st118q1n2*0.53036;
+     anx BY st118q1n3*0.75800;
+     anx BY st118q1n4*0.66355;
+     anx BY st118q1n5*0.58472;
+     mot BY st119q1n1@0.63237;
+     mot BY st119q1n2*0.38640;
+     mot BY st119q1n3*0.56180;
+     mot BY st119q1n4*0.36594;
+     mot BY st119q1n5*0.68706;
+     sup BY s123q1n1@0.38699;
+    sup BY s123q1n2*0.48298;
+     sup BY s123q1n3*0.58498;
+     sup BY s123q1n4*0.62187;
+
+     st118q1n1 WITH st118q1n2*0.12460;
+     st119q1n1 WITH st119q1n2*0.03595;
+
+
+     [ st118q1n1@3.04794 ];
+     [ st118q1n2*3.09157 ];
+     [ st118q1n3*2.73516 ];
+     [ st118q1n4*2.51464 ];
+     [ st118q1n5*2.59459 ];
+     [ st119q1n1@3.69513 ];
+     [ st119q1n2*3.88768 ];
+     [ st119q1n3*3.48492 ];
+     [ st119q1n4*3.35298 ];
+     [ st119q1n5*3.62160 ];
+     [ s123q1n1@3.50143 ];
+    [ s123q1n2*3.57259 ];
+     [ s123q1n3*3.51672 ];
+     [ s123q1n4*3.46928 ];
+     [ anx*-0.40155 ];
+     [ mot*-1.34304 ];
+     [ sup*-0.01771 ];
+
+     st118q1n1*0.36247;
+     st118q1n2*0.37069;
+     st118q1n3*0.32224;
+     st118q1n4*0.38529;
+     st118q1n5*0.55005;
+     st119q1n1*0.32231;
+     st119q1n2*0.28426;
+     st119q1n3*0.41583;
+     st119q1n4*0.41314;
+     st119q1n5*0.27888;
+     s123q1n1*0.30029;
+     s123q1n2*0.16407;
+     s123q1n3*0.13720;
+     s123q1n4*0.18099;
+     anx*0.87291;
+     mot*0.87626;
+     sup*0.74718;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+model 203:
+
+     anx BY st118q1n1@0.62797;
+     anx BY st118q1n2*0.57341;
+     anx BY st118q1n3*0.70321;
+     anx BY st118q1n4*0.58893;
+     anx BY st118q1n5*0.52087;
+     mot BY st119q1n1@0.52357;
+     mot BY st119q1n2*0.41766;
+     mot BY st119q1n3*0.57809;
+     mot BY st119q1n4*0.44348;
+     mot BY st119q1n5*0.64432;
+     sup BY s123q1n1@0.48163;
+     sup BY s123q1n2*0.54168;
+     sup BY s123q1n3*0.54231;
+     sup BY s123q1n4*0.53744;
+
+     st118q1n1 WITH st118q1n2*0.08923;
+     st119q1n1 WITH st119q1n2*0.04143;
+
+
+     [ st118q1n1@2.91706 ];
+     [ st118q1n2*2.91007 ];
+     [ st118q1n3*2.72212 ];
+     [ st118q1n4*2.52810 ];
+     [ st118q1n5*2.74384 ];
+     [ st119q1n1@3.74611 ];
+     [ st119q1n2*3.88450 ];
+     [ st119q1n3*3.62774 ];
+     [ st119q1n4*3.29025 ];
+     [ st119q1n5*3.27077 ];
+     [ s123q1n1@3.48931 ];
+     [ s123q1n2*3.62556 ];
+     [ s123q1n3*3.48976 ];
+     [ s123q1n4*3.31609 ];
+     [ anx*-0.57725 ];
+     [ mot*-1.34254 ];
+     [ sup*-0.46553 ];
+
+     st118q1n1*0.34126;
+     st118q1n2*0.36808;
+     st118q1n3*0.26303;
+     st118q1n4*0.41153;
+     st118q1n5*0.50947;
+     st119q1n1*0.30221;
+     st119q1n2*0.26518;
+     st119q1n3*0.34921;
+     st119q1n4*0.41578;
+     st119q1n5*0.34820;
+     s123q1n1*0.26175;
+     s123q1n2*0.17533;
+     s123q1n3*0.26306;
+     s123q1n4*0.29332;
+     anx*0.92033;
+     mot*0.80421;
+     sup*0.90724;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 208:
+
+     anx BY st118q1n1@0.61507;
+     anx BY st118q1n2*0.56043;
+     anx BY st118q1n3*0.69646;
+     anx BY st118q1n4*0.59953;
+     anx BY st118q1n5*0.57587;
+     mot BY st119q1n1@0.55763;
+     mot BY st119q1n2*0.46526;
+     mot BY st119q1n3*0.54814;
+     mot BY st119q1n4*0.38201;
+     mot BY st119q1n5*0.62905;
+     sup BY s123q1n1@0.50390;
+     sup BY s123q1n2*0.54085;
+     sup BY s123q1n3*0.53438;
+     sup BY s123q1n4*0.52522;
+
+     st118q1n1 WITH st118q1n2*0.09882;
+     st119q1n1 WITH st119q1n2*0.05485;
+
+
+     [ st118q1n1@2.68686 ];
+     [ st118q1n2*2.86237 ];
+     [ st118q1n3*2.90861 ];
+     [ st118q1n4*2.55925 ];
+     [ st118q1n5*2.71430 ];
+     [ st119q1n1@3.76107 ];
+     [ st119q1n2*3.75998 ];
+     [ st119q1n3*3.27735 ];
+     [ st119q1n4*3.47321 ];
+     [ st119q1n5*3.67859 ];
+     [ s123q1n1@3.48286 ];
+     [ s123q1n2*3.58458 ];
+     [ s123q1n3*3.57273 ];
+     [ s123q1n4*3.42009 ];
+     [ anx*-0.20052 ];
+     [ mot*-1.23964 ];
+     [ sup*-0.08125 ];
+
+     st118q1n1*0.35262;
+     st118q1n2*0.42689;
+     st118q1n3*0.28892;
+     st118q1n4*0.31618;
+     st118q1n5*0.45027;
+     st119q1n1*0.26968;
+     st119q1n2*0.30737;
+     st119q1n3*0.38865;
+     st119q1n4*0.32949;
+     st119q1n5*0.21048;
+     s123q1n1*0.17903;
+     s123q1n2*0.09600;
+     s123q1n3*0.14913;
+     s123q1n4*0.24588;
+     anx*0.90526;
+     mot*1.20259;
+     sup*1.07299;
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 214:
+
+     anx BY st118q1n1@0.58268;
+     anx BY st118q1n2*0.54462;
+     anx BY st118q1n3*0.53591;
+     anx BY st118q1n4*0.63253;
+     anx BY st118q1n5*0.67056;
+     mot BY st119q1n1@0.55689;
+     mot BY st119q1n2*0.51262;
+     mot BY st119q1n3*0.51299;
+     mot BY st119q1n4*0.01630;
+     mot BY st119q1n5*0.54037;
+     sup BY s123q1n1@0.52688;
+     sup BY s123q1n2*0.53369;
+     sup BY s123q1n3*0.41280;
+     sup BY s123q1n4*0.51496;
+
+     st118q1n1 WITH st118q1n2*0.00882;
+     st119q1n1 WITH st119q1n2*0.02475;
+
+
+     [ st118q1n1@2.63575 ];
+     [ st118q1n2*3.13268 ];
+     [ st118q1n3*2.99086 ];
+     [ st118q1n4*2.47689 ];
+     [ st118q1n5*2.67764 ];
+     [ st119q1n1@3.75771 ];
+     [ st119q1n2*3.79897 ];
+     [ st119q1n3*3.55438 ];
+     [ st119q1n4*2.00472 ];
+     [ st119q1n5*3.68188 ];
+     [ s123q1n1@3.58460 ];
+     [ s123q1n2*3.59580 ];
+     [ s123q1n3*3.19220 ];
+     [ s123q1n4*3.46239 ];
+     [ anx*0.09298 ];
+     [ mot*-0.57924 ];
+     [ sup*-0.37265 ];
+
+     st118q1n1*0.60234;
+     st118q1n2*0.67488;
+     st118q1n3*0.52743;
+     st118q1n4*0.60517;
+     st118q1n5*0.64430;
+     st119q1n1*0.19872;
+     st119q1n2*0.20449;
+     st119q1n3*0.35488;
+     st119q1n4*0.94661;
+     st119q1n5*0.22341;
+     s123q1n1*0.17125;
+     s123q1n2*0.15350;
+     s123q1n3*0.63395;
+     s123q1n4*0.29167;
+     anx*0.88305;
+     mot*1.42481;
+     sup*
+     
+mot on sup ESCS;
+anx on sup ESCS;
+mot with anx;
+!sup on ESCS;
+!PV1MATH on mot anx ESCS;
+
+model 233:
+
+     anx BY st118q1n1@0.60886;
+     anx BY st118q1n2*0.58235;
+     anx BY st118q1n3*0.67017;
+     anx BY st118q1n4*0.65356;
+     anx BY st118q1n5*0.58634;
+     mot BY st119q1n1@0.45246;
+     mot BY st119q1n2*0.42570;
+     mot BY st119q1n3*0.63411;
+     mot BY st119q1n4*0.47740;
+     mot BY st119q1n5*0.68831;
+     !sup BY s123q1n1@0.42306;
+     !sup BY s123q1n2*0.53599;
+     !sup BY s123q1n3*0.58320;
+     !sup BY s123q1n4*0.55763;
+
+     st118q1n1 WITH st118q1n2*0.11615;
+     st119q1n1 WITH st119q1n2*0.11200;
+
+
+     [ st118q1n1@2.84676 ];
+     [ st118q1n2*2.87505 ];
+     [ st118q1n3*2.87206 ];
+     [ st118q1n4*2.47357 ];
+     [ st118q1n5*2.66136 ];
+     [ st119q1n1@3.82751 ];
+     [ st119q1n2*3.88761 ];
+     [ st119q1n3*3.51102 ];
+     [ st119q1n4*3.38431 ];
+     [ st119q1n5*3.29822 ];
+     ![ s123q1n1@3.48569 ];
+     ![ s123q1n2*3.58442 ];
+     ![ s123q1n3*3.50913 ];
+     ![ s123q1n4*3.46371 ];
+     [ anx*-0.57219 ];
+     [ mot*-1.03958 ];
+     ![ sup*-0.51552 ];
+
+     st118q1n1*0.35215;
+     st118q1n2*0.38199;
+     st118q1n3*0.36520;
+     st118q1n4*0.33285;
+     st118q1n5*0.48172;
+     st119q1n1*0.28305;
+     st119q1n2*0.25121;
+     st119q1n3*0.33782;
+     st119q1n4*0.31081;
+     st119q1n5*0.34092;
+     !s123q1n1*0.26356;
+     !s123q1n2*0.16507;
+     !s123q1n3*0.18153;
+     !s123q1n4*0.24469;
+     anx*0.91317;
+     mot*0.80755;
+     !sup*1.15214;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 246:
+
+     anx BY st118q1n1@0.57822;
+     anx BY st118q1n2*0.54174;
+     anx BY st118q1n3*0.70897;
+     anx BY st118q1n4*0.64411;
+     anx BY st118q1n5*0.59789;
+     mot BY st119q1n1@0.49861;
+     mot BY st119q1n2*0.40739;
+     mot BY st119q1n3*0.56500;
+     mot BY st119q1n4*0.49828;
+     mot BY st119q1n5*0.64896;
+     !sup BY s123q1n1@0.42867;
+     !sup BY s123q1n2*0.54394;
+     !sup BY s123q1n3*0.57541;
+     !sup BY s123q1n4*0.54097;
+
+     st118q1n1 WITH st118q1n2*0.26815;
+     st119q1n1 WITH st119q1n2*0.11044;
+
+     [ st118q1n1@2.76324 ];
+     [ st118q1n2*2.82182 ];
+     [ st118q1n3*3.06352 ];
+     [ st118q1n4*2.42471 ];
+     [ st118q1n5*2.78196 ];
+     [ st119q1n1@3.69354 ];
+     [ st119q1n2*3.81551 ];
+     [ st119q1n3*3.42731 ];
+     [ st119q1n4*3.55619 ];
+     [ st119q1n5*3.61954 ];
+     ![ s123q1n1@3.59328 ];
+     ![ s123q1n2*3.52338 ];
+     ![ s123q1n3*3.48634 ];
+     ![ s123q1n4*3.48326 ];
+     [ anx*-0.85612 ];
+     [ mot*-1.93430 ];
+     ![ sup*-0.21509 ];
+
+     st118q1n1*0.42620;
+     st118q1n2*0.51724;
+     st118q1n3*0.36865;
+     st118q1n4*0.26433;
+     st118q1n5*0.46754;
+     st119q1n1*0.33969;
+     st119q1n2*0.33484;
+     st119q1n3*0.32082;
+     st119q1n4*0.38462;
+     st119q1n5*0.29082;
+     !s123q1n1*0.15702;
+     !s123q1n2*0.09546;
+     !s123q1n3*0.11714;
+     !s123q1n4*0.17364;
+     anx*0.78386;
+     mot*1.19212;
+     !sup*1.09014;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 250:
+
+     anx BY st118q1n1@0.60719;
+     anx BY st118q1n2*0.56016;
+     anx BY st118q1n3*0.70710;
+     anx BY st118q1n4*0.48771;
+     anx BY st118q1n5*0.56197;
+     mot BY st119q1n1@0.44113;
+     mot BY st119q1n2*0.32214;
+     mot BY st119q1n3*0.64438;
+     mot BY st119q1n4*0.39748;
+     mot BY st119q1n5*0.71713;
+     !sup BY s123q1n1@0.43430;
+     !sup BY s123q1n2*0.47688;
+     !sup BY s123q1n3*0.60174;
+     !sup BY s123q1n4*0.55914;
+
+     st118q1n1 WITH st118q1n2*0.13366;
+     st119q1n1 WITH st119q1n2*0.10512;
+
+     [ st118q1n1@2.95372 ];
+     [ st118q1n2*2.99896 ];
+     [ st118q1n3*2.74550 ];
+     [ st118q1n4*2.30219 ];
+     [ st118q1n5*2.82840 ];
+     [ st119q1n1@3.80896 ];
+     [ st119q1n2*3.90736 ];
+     [ st119q1n3*3.44519 ];
+     [ st119q1n4*3.38681 ];
+     [ st119q1n5*3.44598 ];
+     ![ s123q1n1@3.53403 ];
+     ![ s123q1n2*3.63283 ];
+     ![ s123q1n3*3.42386 ];
+     ![ s123q1n4*3.48144 ];
+     [ anx*-0.47071 ];
+     [ mot*-1.42894 ];
+     ![ sup*-0.12379 ];
+
+     st118q1n1*0.35782;
+     st118q1n2*0.41892;
+     st118q1n3*0.33957;
+     st118q1n4*0.52695;
+     st118q1n5*0.59163;
+     st119q1n1*0.33514;
+     st119q1n2*0.31156;
+     st119q1n3*0.36473;
+     st119q1n4*0.43176;
+     st119q1n5*0.34937;
+     !s123q1n1*0.22827;
+     !s123q1n2*0.14521;
+     !s123q1n3*0.17471;
+     !s123q1n4*0.21171;
+     anx*1.23728;
+     mot*1.05212;
+     !sup*0.96223;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 276:
+
+     anx BY st118q1n1@0.59969;
+     anx BY st118q1n2*0.55325;
+     anx BY st118q1n3*0.74491;
+     anx BY st118q1n4*0.53186;
+     anx BY st118q1n5*0.53324;
+     mot BY st119q1n1@0.47757;
+     mot BY st119q1n2*0.33955;
+     mot BY st119q1n3*0.60427;
+     mot BY st119q1n4*0.41973;
+     mot BY st119q1n5*0.70585;
+     !sup BY s123q1n1@0.41534;
+     !sup BY s123q1n2*0.58495;
+     !sup BY s123q1n3*0.56021;
+     !sup BY s123q1n4*0.53215;
+
+     st118q1n1 WITH st118q1n2*0.15896;
+     st119q1n1 WITH st119q1n2*0.10942;
+
+
+     [ st118q1n1@2.99877 ];
+     [ st118q1n2*2.99680 ];
+     [ st118q1n3*2.87874 ];
+     [ st118q1n4*2.28082 ];
+     [ st118q1n5*2.57905 ];
+     [ st119q1n1@3.75227 ];
+     [ st119q1n2*3.91460 ];
+     [ st119q1n3*3.27971 ];
+     [ st119q1n4*3.41790 ];
+     [ st119q1n5*3.46293 ];
+     ![ s123q1n1@3.62845 ];
+     ![ s123q1n2*3.52324 ];
+     ![ s123q1n3*3.53598 ];
+     ![ s123q1n4*3.43731 ];
+     [ anx*-0.77320 ];
+     [ mot*-1.51146 ];
+     ![ sup*-0.00494 ];
+
+     st118q1n1*0.37835;
+     st118q1n2*0.50732;
+     st118q1n3*0.39307;
+     st118q1n4*0.50822;
+     st118q1n5*0.59685;
+     st119q1n1*0.36911;
+     st119q1n2*0.33894;
+     st119q1n3*0.36083;
+     st119q1n4*0.50016;
+     st119q1n5*0.31559;
+     !s123q1n1*0.19520;
+     !s123q1n2*0.13505;
+     !s123q1n3*0.20703;
+     !s123q1n4*0.34039;
+     anx*1.03004;
+     mot*1.14926;
+     !sup*0.93908;
+
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 300:
+
+     anx BY st118q1n1@0.59485;
+     anx BY st118q1n2*0.47144;
+     anx BY st118q1n3*0.77558;
+     anx BY st118q1n4*0.65602;
+     anx BY st118q1n5*0.49908;
+     mot BY st119q1n1@0.68257;
+     mot BY st119q1n2*0.36077;
+     mot BY st119q1n3*0.51532;
+     mot BY st119q1n4*0.27597;
+     mot BY st119q1n5*0.70617;
+     !sup BY s123q1n1@0.46325;
+     !sup BY s123q1n2*0.57645;
+     !sup BY s123q1n3*0.55924;
+     !sup BY s123q1n4*0.50589;
+
+     st118q1n1 WITH st118q1n2*0.16259;
+     st119q1n1 WITH st119q1n2*0.00207;
+
+
+     [ st118q1n1@2.60074 ];
+     [ st118q1n2*2.60130 ];
+     [ st118q1n3*2.88995 ];
+     [ st118q1n4*2.47916 ];
+     [ st118q1n5*2.93049 ];
+     [ st119q1n1@3.70583 ];
+     [ st119q1n2*3.92380 ];
+     [ st119q1n3*3.44223 ];
+     [ st119q1n4*3.26603 ];
+     [ st119q1n5*3.55008 ];
+     ![ s123q1n1@3.51699 ];
+     ![ s123q1n2*3.51524 ];
+     ![ s123q1n3*3.46455 ];
+     ![ s123q1n4*3.58024 ];
+     [ anx*-0.31660 ];
+     [ mot*-1.13167 ];
+     ![ sup*-0.17350 ];
+
+     st118q1n1*0.41409;
+     st118q1n2*0.57974;
+     st118q1n3*0.43927;
+     st118q1n4*0.46339;
+     st118q1n5*0.66793;
+     st119q1n1*0.25730;
+     st119q1n2*0.27962;
+     st119q1n3*0.48189;
+     st119q1n4*0.47622;
+     st119q1n5*0.29980;
+     !s123q1n1*0.25717;
+     !s123q1n2*0.18515;
+     !s123q1n3*0.28146;
+     !s123q1n4*0.25893;
+     anx*0.80081;
+     mot*0.82887;
+     !sup*0.81570;
+     
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 344:
+
+     anx BY st118q1n1@0.58874;
+     anx BY st118q1n2*0.54142;
+     anx BY st118q1n3*0.66386;
+     anx BY st118q1n4*0.67175;
+     anx BY st118q1n5*0.60327;
+     mot BY st119q1n1@0.42105;
+     mot BY st119q1n2*0.41856;
+     mot BY st119q1n3*0.61695;
+     mot BY st119q1n4*0.54421;
+     mot BY st119q1n5*0.61072;
+     !sup BY s123q1n1@0.38850;
+     !sup BY s123q1n2*0.49834;
+     !sup BY s123q1n3*0.61672;
+     !sup BY s123q1n4*0.56233;
+
+     st118q1n1 WITH st118q1n2*0.14052;
+     st119q1n1 WITH st119q1n2*0.16686;
+
+
+     [ st118q1n1@2.83709 ];
+     [ st118q1n2*3.04883 ];
+     [ st118q1n3*2.76681 ];
+     [ st118q1n4*2.53843 ];
+     [ st118q1n5*2.60420 ];
+     [ st119q1n1@3.72178 ];
+     [ st119q1n2*3.78804 ];
+     [ st119q1n3*3.71119 ];
+     [ st119q1n4*3.30618 ];
+     [ st119q1n5*3.57277 ];
+     ![ s123q1n1@2.98933 ];
+     ![ s123q1n2*3.55098 ];
+     ![ s123q1n3*3.50883 ];
+     ![ s123q1n4*3.51062 ];
+     [ anx*0.04766 ];
+     [ mot*-0.92994 ];
+     ![ sup*-0.65080 ];
+
+     st118q1n1*0.29924;
+     st118q1n2*0.30514;
+     st118q1n3*0.24196;
+     st118q1n4*0.28475;
+     st118q1n5*0.34337;
+     st119q1n1*0.36779;
+     st119q1n2*0.25145;
+     st119q1n3*0.16907;
+     st119q1n4*0.34959;
+     st119q1n5*0.32026;
+     !s123q1n1*0.35985;
+     !s123q1n2*0.18053;
+     !s123q1n3*0.10139;
+     !s123q1n4*0.16337;
+     anx*0.98163;
+     mot*0.97559;
+     !sup*0.80585;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 348:
+
+     anx BY st118q1n1@0.57961;
+     anx BY st118q1n2*0.52830;
+     anx BY st118q1n3*0.72431;
+     anx BY st118q1n4*0.63456;
+     anx BY st118q1n5*0.59470;
+     mot BY st119q1n1@0.55070;
+     mot BY st119q1n2*0.40700;
+     mot BY st119q1n3*0.56178;
+     mot BY st119q1n4*0.47789;
+     mot BY st119q1n5*0.61416;
+     !sup BY s123q1n1@0.46064;
+     !sup BY s123q1n2*0.51734;
+     !sup BY s123q1n3*0.58379;
+     !sup BY s123q1n4*0.53478;
+
+     st118q1n1 WITH st118q1n2*0.12356;
+     st119q1n1 WITH st119q1n2*0.05992;
+
+
+     [ st118q1n1@2.91535 ];
+     [ st118q1n2*2.97107 ];
+     [ st118q1n3*2.87253 ];
+     [ st118q1n4*2.33527 ];
+     [ st118q1n5*2.67438 ];
+     [ st119q1n1@3.73769 ];
+     [ st119q1n2*3.90538 ];
+     [ st119q1n3*3.60411 ];
+     [ st119q1n4*3.36117 ];
+     [ st119q1n5*3.21127 ];
+     ![ s123q1n1@3.53072 ];
+     ![ s123q1n2*3.54955 ];
+     ![ s123q1n3*3.49366 ];
+     ![ s123q1n4*3.49040 ];
+     [ anx*-0.45474 ];
+     [ mot*-1.37664 ];
+     ![ sup*-0.09122 ];
+
+     st118q1n1*0.39245;
+     st118q1n2*0.42822;
+     st118q1n3*0.39533;
+     st118q1n4*0.37795;
+     st118q1n5*0.52639;
+     st119q1n1*0.29603;
+     st119q1n2*0.26448;
+     st119q1n3*0.42173;
+     st119q1n4*0.39951;
+     st119q1n5*0.40418;
+     !s123q1n1*0.20011;
+     !s123q1n2*0.17996;
+     !s123q1n3*0.16993;
+     !s123q1n4*0.24786;
+     anx*0.99019;
+     mot*0.94552;
+     !sup*0.81306;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 352:
+
+     anx BY st118q1n1@0.61626;
+     anx BY st118q1n2*0.56385;
+     anx BY st118q1n3*0.69174;
+     anx BY st118q1n4*0.69302;
+     anx BY st118q1n5*0.59745;
+     mot BY st119q1n1@0.35932;
+     mot BY st119q1n2*0.50111;
+     mot BY st119q1n3*0.60165;
+     mot BY st119q1n4*0.51162;
+     mot BY st119q1n5*0.68527;
+     !sup BY s123q1n1@0.49974;
+     !sup BY s123q1n2*0.52673;
+     !sup BY s123q1n3*0.57370;
+     !sup BY s123q1n4*0.53966;
+
+     st118q1n1 WITH st118q1n2*0.13221;
+     st119q1n1 WITH st119q1n2*0.10356;
+
+
+     [ st118q1n1@2.74822 ];
+     [ st118q1n2*2.93837 ];
+     [ st118q1n3*2.84523 ];
+     [ st118q1n4*2.58931 ];
+     [ st118q1n5*2.66943 ];
+     [ st119q1n1@3.90461 ];
+     [ st119q1n2*3.74510 ];
+     [ st119q1n3*3.51492 ];
+     [ st119q1n4*3.44671 ];
+     [ st119q1n5*3.56247 ];
+     ![ s123q1n1@3.40060 ];
+     ![ s123q1n2*3.58652 ];
+     ![ s123q1n3*3.47325 ];
+     ![ s123q1n4*3.50947 ];
+     [ anx*-0.46885 ];
+     [ mot*-0.70623 ];
+     ![ sup*0.08441 ];
+
+     st118q1n1*0.34145;
+     st118q1n2*0.46406;
+     st118q1n3*0.27907;
+     st118q1n4*0.22238;
+     st118q1n5*0.38068;
+     st119q1n1*0.22080;
+     st119q1n2*0.33799;
+     st119q1n3*0.31029;
+     st119q1n4*0.37238;
+     st119q1n5*0.22969;
+     !s123q1n1*0.18728;
+     !s123q1n2*0.08102;
+     !s123q1n3*0.10655;
+     !s123q1n4*0.16184;
+     anx*1.36938;
+     mot*1.07028;
+     !sup*1.20910;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+ model 372:
+
+     anx BY st118q1n1@0.56974;
+     anx BY st118q1n2*0.57091;
+     anx BY st118q1n3*0.67780;
+     anx BY st118q1n4*0.65434;
+     anx BY st118q1n5*0.59488;
+     mot BY st119q1n1@0.50763;
+     mot BY st119q1n2*0.40885;
+     mot BY st119q1n3*0.54488;
+     mot BY st119q1n4*0.50291;
+     mot BY st119q1n5*0.64859;
+     !sup BY s123q1n1@0.48635;
+     !sup BY s123q1n2*0.54743;
+     !sup BY s123q1n3*0.55778;
+     !sup BY s123q1n4*0.50962;
+
+     st118q1n1 WITH st118q1n2*0.12125;
+     st119q1n1 WITH st119q1n2*0.05941;
+
+
+     [ st118q1n1@2.74395 ];
+     [ st118q1n2*2.91340 ];
+     [ st118q1n3*2.83060 ];
+     [ st118q1n4*2.57579 ];
+     [ st118q1n5*2.71273 ];
+     [ st119q1n1@3.70442 ];
+     [ st119q1n2*3.83950 ];
+     [ st119q1n3*3.65994 ];
+     [ st119q1n4*3.46460 ];
+     [ st119q1n5*3.34162 ];
+     ![ s123q1n1@3.52952 ];
+     ![ s123q1n2*3.54316 ];
+     ![ s123q1n3*3.48580 ];
+     ![ s123q1n4*3.50446 ];
+     [ anx*-0.14311 ];
+     [ mot*-0.57976 ];
+     ![ sup*0.07194 ];
+
+     st118q1n1*0.32164;
+     st118q1n2*0.35279;
+     st118q1n3*0.33269;
+     st118q1n4*0.34545;
+     st118q1n5*0.48637;
+     st119q1n1*0.21305;
+     st119q1n2*0.18885;
+     st119q1n3*0.30072;
+     st119q1n4*0.28931;
+     st119q1n5*0.28676;
+     !s123q1n1*0.15863;
+     !s123q1n2*0.09805;
+     !s123q1n3*0.14552;
+     !s123q1n4*0.17075;
+     anx*0.82710;
+     mot*0.81435;
+     !sup*0.95874;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+model 380:
+
+     anx BY st118q1n1@0.57029;
+     anx BY st118q1n2*0.43107;
+     anx BY st118q1n3*0.73635;
+     anx BY st118q1n4*0.68478;
+     anx BY st118q1n5*0.55023;
+     mot BY st119q1n1@0.44297;
+     mot BY st119q1n2*0.30962;
+     mot BY st119q1n3*0.61745;
+     mot BY st119q1n4*0.45021;
+     mot BY st119q1n5*0.70532;
+     !sup BY s123q1n1@0.39057;
+     !sup BY s123q1n2*0.50384;
+     !sup BY s123q1n3*0.60767;
+     !sup BY s123q1n4*0.55501;
+
+     st118q1n1 WITH st118q1n2*0.06596;
+     st119q1n1 WITH st119q1n2*0.06332;
+
+
+     [ st118q1n1@2.64859 ];
+     [ st118q1n2*3.11413 ];
+     [ st118q1n3*2.76700 ];
+     [ st118q1n4*2.49191 ];
+     [ st118q1n5*2.93965 ];
+     [ st119q1n1@3.80057 ];
+     [ st119q1n2*3.84450 ];
+     [ st119q1n3*3.44640 ];
+     [ st119q1n4*3.45517 ];
+     [ st119q1n5*3.45160 ];
+     ![ s123q1n1@3.55278 ];
+     ![ s123q1n2*3.47390 ];
+     ![ s123q1n3*3.46014 ];
+     ![ s123q1n4*3.54130 ];
+     [ anx*0.18535 ];
+     [ mot*-1.29411 ];
+     ![ sup*-0.26622 ];
+
+     st118q1n1*0.40192;
+     st118q1n2*0.43082;
+     st118q1n3*0.32123;
+     st118q1n4*0.31639;
+     st118q1n5*0.51018;
+     st119q1n1*0.31229;
+     st119q1n2*0.30012;
+     st119q1n3*0.41635;
+     st119q1n4*0.40085;
+     st119q1n5*0.31061;
+     !s123q1n1*0.23981;
+     !s123q1n2*0.23512;
+     !s123q1n3*0.19319;
+     !s123q1n4*0.27733;
+     anx*0.96049;
+     mot*0.88502;
+     !sup*0.86933;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 392:
+
+     anx BY st118q1n1@0.58604;
+     anx BY st118q1n2*0.57489;
+     anx BY st118q1n3*0.73363;
+     anx BY st118q1n4*0.56384;
+     anx BY st118q1n5*0.52284;
+     mot BY st119q1n1@0.49113;
+     mot BY st119q1n2*0.32210;
+     mot BY st119q1n3*0.64283;
+     mot BY st119q1n4*0.40429;
+     mot BY st119q1n5*0.66006;
+     !sup BY s123q1n1@0.42144;
+     !sup BY s123q1n2*0.51496;
+     !sup BY s123q1n3*0.54352;
+     !sup BY s123q1n4*0.60478;
+
+     st118q1n1 WITH st118q1n2*0.20031;
+     st119q1n1 WITH st119q1n2*0.16360;
+
+     [ st118q1n1@3.10516 ];
+     [ st118q1n2*3.22465 ];
+     [ st118q1n3*2.81919 ];
+     [ st118q1n4*2.22789 ];
+     [ st118q1n5*2.56155 ];
+     [ st119q1n1@3.74321 ];
+     [ st119q1n2*3.89302 ];
+     [ st119q1n3*3.55803 ];
+     [ st119q1n4*3.38414 ];
+     [ st119q1n5*3.46291 ];
+     ![ s123q1n1@3.38785 ];
+     ![ s123q1n2*3.61871 ];
+     ![ s123q1n3*3.55081 ];
+     ![ s123q1n4*3.42177 ];
+     [ anx*-0.10067 ];
+     [ mot*-1.82968 ];
+     ![ sup*-0.61109 ];
+
+     st118q1n1*0.40291;
+     st118q1n2*0.39167;
+     st118q1n3*0.33845;
+     st118q1n4*0.56923;
+     st118q1n5*0.63260;
+     st119q1n1*0.46135;
+     st119q1n2*0.43706;
+     st119q1n3*0.23260;
+     st119q1n4*0.42982;
+     st119q1n5*0.24340;
+     !s123q1n1*0.30158;
+     !s123q1n2*0.17318;
+     !s123q1n3*0.17248;
+     !s123q1n4*0.21170;
+     anx*0.97921;
+     mot*1.46100;
+     !sup*1.20559;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 410:
+
+     anx BY st118q1n1@0.57272;
+     anx BY st118q1n2*0.63150;
+     anx BY st118q1n3*0.69367;
+     anx BY st118q1n4*0.61842;
+     anx BY st118q1n5*0.52813;
+     mot BY st119q1n1@0.52423;
+     mot BY st119q1n2*0.40248;
+     mot BY st119q1n3*0.59043;
+     mot BY st119q1n4*0.43083;
+     mot BY st119q1n5*0.63309;
+     !sup BY s123q1n1@0.46785;
+     !sup BY s123q1n2*0.49568;
+     !sup BY s123q1n3*0.56369;
+     !sup BY s123q1n4*0.56341;
+
+     st118q1n1 WITH st118q1n2*0.07940;
+     st119q1n1 WITH st119q1n2*0.07172;
+
+
+     [ st118q1n1@2.90259 ];
+     [ st118q1n2*3.04083 ];
+     [ st118q1n3*2.73790 ];
+     [ st118q1n4*2.51596 ];
+     [ st118q1n5*2.63635 ];
+     [ st119q1n1@3.72734 ];
+     [ st119q1n2*3.79988 ];
+     [ st119q1n3*3.62038 ];
+     [ st119q1n4*3.16617 ];
+     [ st119q1n5*3.67022 ];
+     ![ s123q1n1@3.56834 ];
+     ![ s123q1n2*3.54633 ];
+     ![ s123q1n3*3.49056 ];
+     ![ s123q1n4*3.46878 ];
+     [ anx*-0.22066 ];
+     [ mot*-0.74721 ];
+     ![ sup*-0.31439 ];
+
+     st118q1n1*0.27818;
+     st118q1n2*0.26642;
+     st118q1n3*0.22389;
+     st118q1n4*0.34713;
+     st118q1n5*0.43935;
+     st119q1n1*0.28350;
+     st119q1n2*0.18508;
+     st119q1n3*0.21947;
+     st119q1n4*0.37139;
+     st119q1n5*0.17642;
+     !s123q1n1*0.12786;
+     !s123q1n2*0.10762;
+     !s123q1n3*0.10008;
+     !s123q1n4*0.16153;
+     anx*0.94436;
+     mot*1.06809;
+     !sup*0.92632;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 428:
+
+     anx BY st118q1n1@0.62103;
+     anx BY st118q1n2*0.54461;
+     anx BY st118q1n3*0.73345;
+     anx BY st118q1n4*0.57549;
+     anx BY st118q1n5*0.59392;
+     mot BY st119q1n1@0.52687;
+     mot BY st119q1n2*0.48327;
+     mot BY st119q1n3*0.60709;
+     mot BY st119q1n4*0.42117;
+     mot BY st119q1n5*0.60711;
+     !sup BY s123q1n1@0.47493;
+     !sup BY s123q1n2*0.54169;
+     !sup BY s123q1n3*0.55490;
+     !sup BY s123q1n4*0.54494;
+
+     st118q1n1 WITH st118q1n2*0.10137;
+     st119q1n1 WITH st119q1n2*0.12044;
+
+
+     [ st118q1n1@2.86744 ];
+     [ st118q1n2*3.06313 ];
+     [ st118q1n3*2.75014 ];
+     [ st118q1n4*2.41145 ];
+     [ st118q1n5*2.74472 ];
+     [ st119q1n1@3.80392 ];
+     [ st119q1n2*3.89869 ];
+     [ st119q1n3*3.46563 ];
+     [ st119q1n4*3.33622 ];
+     [ st119q1n5*3.32470 ];
+     ![ s123q1n1@3.59631 ];
+     ![ s123q1n2*3.56756 ];
+     ![ s123q1n3*3.48245 ];
+     ![ s123q1n4*3.40152 ];
+     [ anx*-0.50850 ];
+     [ mot*-1.01806 ];
+     ![ sup*-0.57063 ];
+
+     st118q1n1*0.38015;
+     st118q1n2*0.44337;
+     st118q1n3*0.28216;
+     st118q1n4*0.33114;
+     st118q1n5*0.47293;
+     st119q1n1*0.32912;
+     st119q1n2*0.30279;
+     st119q1n3*0.36698;
+     st119q1n4*0.38809;
+     st119q1n5*0.41034;
+     !s123q1n1*0.25615;
+     !s123q1n2*0.18895;
+     !s123q1n3*0.21017;
+     !s123q1n4*0.28285;
+     anx*0.83622;
+     mot*0.96112;
+     !sup*1.30302;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 440:
+
+     anx BY st118q1n1@0.63605;
+     anx BY st118q1n2*0.57978;
+     anx BY st118q1n3*0.68377;
+     anx BY st118q1n4*0.59766;
+     anx BY st118q1n5*0.56015;
+     mot BY st119q1n1@0.50465;
+     mot BY st119q1n2*0.40382;
+     mot BY st119q1n3*0.61043;
+     mot BY st119q1n4*0.45442;
+     mot BY st119q1n5*0.66307;
+     !sup BY s123q1n1@0.46178;
+     !sup BY s123q1n2*0.51509;
+     !sup BY s123q1n3*0.56987;
+     !sup BY s123q1n4*0.55742;
+
+     st118q1n1 WITH st118q1n2*0.06622;
+     st119q1n1 WITH st119q1n2*0.11555;
+
+
+     [ st118q1n1@2.88121 ];
+     [ st118q1n2*2.95771 ];
+     [ st118q1n3*2.79252 ];
+     [ st118q1n4*2.54835 ];
+     [ st118q1n5*2.62222 ];
+     [ st119q1n1@3.73193 ];
+     [ st119q1n2*3.92612 ];
+     [ st119q1n3*3.49779 ];
+     [ st119q1n4*3.36957 ];
+     [ st119q1n5*3.48308 ];
+     ![ s123q1n1@3.58099 ];
+     ![ s123q1n2*3.52468 ];
+     ![ s123q1n3*3.43373 ];
+     ![ s123q1n4*3.52221 ];
+     [ anx*-0.42943 ];
+     [ mot*-1.08588 ];
+     ![ sup*-0.07138 ];
+
+     st118q1n1*0.39381;
+     st118q1n2*0.47308;
+     st118q1n3*0.47143;
+     st118q1n4*0.56564;
+     st118q1n5*0.73084;
+     st119q1n1*0.38016;
+     st119q1n2*0.35043;
+     st119q1n3*0.35575;
+     st119q1n4*0.47759;
+     st119q1n5*0.40212;
+     !s123q1n1*0.23095;
+     !s123q1n2*0.23867;
+     !s123q1n3*0.25131;
+     !s123q1n4*0.24338;
+     anx*1.33955;
+     mot*1.33905;
+     !sup*1.26739;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 442:
+
+     anx BY st118q1n1@0.61509;
+     anx BY st118q1n2*0.59665;
+     anx BY st118q1n3*0.75667;
+     anx BY st118q1n4*0.54738;
+     anx BY st118q1n5*0.57211;
+     mot BY st119q1n1@0.48255;
+     mot BY st119q1n2*0.34601;
+     mot BY st119q1n3*0.69515;
+     mot BY st119q1n4*0.47744;
+     mot BY st119q1n5*0.74071;
+     !sup BY s123q1n1@0.41877;
+     !sup BY s123q1n2*0.54267;
+     !sup BY s123q1n3*0.58855;
+     !sup BY s123q1n4*0.55944;
+
+     st118q1n1 WITH st118q1n2*0.14301;
+     st119q1n1 WITH st119q1n2*0.12685;
+
+
+     [ st118q1n1@2.95811 ];
+     [ st118q1n2*3.07653 ];
+     [ st118q1n3*2.81378 ];
+     [ st118q1n4*2.27217 ];
+     [ st118q1n5*2.63514 ];
+     [ st119q1n1@3.76926 ];
+     [ st119q1n2*3.87752 ];
+     [ st119q1n3*3.43634 ];
+     [ st119q1n4*3.33970 ];
+     [ st119q1n5*3.53196 ];
+     ![ s123q1n1@3.64600 ];
+     ![ s123q1n2*3.57238 ];
+     ![ s123q1n3*3.46496 ];
+     ![ s123q1n4*3.43750 ];
+     [ anx*-0.52246 ];
+     [ mot*-1.24297 ];
+     ![ sup*-0.07375 ];
+
+     st118q1n1*0.39017;
+     st118q1n2*0.44045;
+     st118q1n3*0.33202;
+     st118q1n4*0.51908;
+     st118q1n5*0.62921;
+     st119q1n1*0.36932;
+     st119q1n2*0.33648;
+     st119q1n3*0.30993;
+     st119q1n4*0.50477;
+     st119q1n5*0.30275;
+     !s123q1n1*0.19949;
+     !s123q1n2*0.13921;
+     !s123q1n3*0.20557;
+     !s123q1n4*0.29266;
+     anx*1.17027;
+     mot*1.14691;
+     !sup*1.10341;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+model 446:
+
+     anx BY st118q1n1@0.60682;
+     anx BY st118q1n2*0.58759;
+     anx BY st118q1n3*0.70824;
+     anx BY st118q1n4*0.71546;
+     anx BY st118q1n5*0.51268;
+     mot BY st119q1n1@0.56843;
+     mot BY st119q1n2*0.36550;
+     mot BY st119q1n3*0.64852;
+     mot BY st119q1n4*0.44558;
+     mot BY st119q1n5*0.69346;
+     !sup BY s123q1n1@0.44126;
+     !sup BY s123q1n2*0.45725;
+     !sup BY s123q1n3*0.60877;
+     !sup BY s123q1n4*0.61195;
+
+     st118q1n1 WITH st118q1n2*0.13421;
+     st119q1n1 WITH st119q1n2*0.02963;
+
+
+     [ st118q1n1@2.87223 ];
+     [ st118q1n2*2.96856 ];
+     [ st118q1n3*2.74702 ];
+     [ st118q1n4*2.61643 ];
+     [ st118q1n5*2.60373 ];
+     [ st119q1n1@3.46898 ];
+     [ st119q1n2*3.79947 ];
+     [ st119q1n3*3.71125 ];
+     [ st119q1n4*3.33749 ];
+     [ st119q1n5*3.61810 ];
+     ![ s123q1n1@3.10453 ];
+     ![ s123q1n2*3.55381 ];
+     ![ s123q1n3*3.46497 ];
+     ![ s123q1n4*3.54529 ];
+     [ anx*0.08282 ];
+     [ mot*-1.59884 ];
+     ![ sup*-0.74871 ];
+
+     st118q1n1*0.34117;
+     st118q1n2*0.35947;
+     st118q1n3*0.28533;
+     st118q1n4*0.25483;
+     st118q1n5*0.48385;
+     st119q1n1*0.37193;
+     st119q1n2*0.29051;
+     st119q1n3*0.27094;
+     st119q1n4*0.50013;
+     st119q1n5*0.29759;
+     !s123q1n1*0.32031;
+     !s123q1n2*0.22728;
+     !s123q1n3*0.14987;
+     !s123q1n4*0.18882;
+     anx*0.90054;
+     mot*0.81407;
+     !sup*0.89530;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 484:
+
+     anx BY st118q1n1@0.50271;
+     anx BY st118q1n2*0.44575;
+     anx BY st118q1n3*0.68009;
+     anx BY st118q1n4*0.69805;
+     anx BY st118q1n5*0.64460;
+     mot BY st119q1n1@0.45099;
+     mot BY st119q1n2*0.43990;
+     mot BY st119q1n3*0.64746;
+     mot BY st119q1n4*0.28768;
+     mot BY st119q1n5*0.63083;
+     !sup BY s123q1n1@0.50725;
+     !sup BY s123q1n2*0.53163;
+     !sup BY s123q1n3*0.52195;
+     !sup BY s123q1n4*0.52878;
+
+     st118q1n1 WITH st118q1n2*0.12485;
+     st119q1n1 WITH st119q1n2*0.11382;
+
+
+     [ st118q1n1@2.82133 ];
+     [ st118q1n2*3.04736 ];
+     [ st118q1n3*2.66469 ];
+     [ st118q1n4*2.48723 ];
+     [ st118q1n5*2.78332 ];
+     [ st119q1n1@3.84315 ];
+     [ st119q1n2*3.81827 ];
+     [ st119q1n3*3.57566 ];
+     [ st119q1n4*2.46003 ];
+     [ st119q1n5*3.47848 ];
+     ![ s123q1n1@3.57273 ];
+     ![ s123q1n2*3.55251 ];
+     ![ s123q1n3*3.44988 ];
+     ![ s123q1n4*3.49032 ];
+     [ anx*-0.01258 ];
+     [ mot*-0.63880 ];
+     ![ sup*-0.26124 ];
+
+     st118q1n1*0.40902;
+     st118q1n2*0.53484;
+     st118q1n3*0.39605;
+     st118q1n4*0.36113;
+     st118q1n5*0.47175;
+     st119q1n1*0.24197;
+     st119q1n2*0.24827;
+     st119q1n3*0.25198;
+     st119q1n4*0.83478;
+     st119q1n5*0.26850;
+     !s123q1n1*0.17396;
+     !s123q1n2*0.13562;
+     !s123q1n3*0.18790;
+     !s123q1n4*0.21662;
+     anx*0.97326;
+     mot*0.79084;
+     !sup*2.00667;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 499:
+
+     anx BY st118q1n1@0.61317;
+     anx BY st118q1n2*0.55090;
+     anx BY st118q1n3*0.66228;
+     anx BY st118q1n4*0.67738;
+     anx BY st118q1n5*0.62811;
+     mot BY st119q1n1@0.62340;
+     mot BY st119q1n2*0.44828;
+     mot BY st119q1n3*0.56765;
+     mot BY st119q1n4*0.42076;
+     mot BY st119q1n5*0.66850;
+     !sup BY s123q1n1@0.42447;
+     !sup BY s123q1n2*0.54827;
+     !sup BY s123q1n3*0.61547;
+     !sup BY s123q1n4*0.52791;
+
+     st118q1n1 WITH st118q1n2*0.10565;
+     st119q1n1 WITH st119q1n2*0.08075;
+
+
+     [ st118q1n1@2.77680 ];
+     [ st118q1n2*2.86772 ];
+     [ st118q1n3*2.80911 ];
+     [ st118q1n4*2.54631 ];
+     [ st118q1n5*2.72935 ];
+     [ st119q1n1@3.75196 ];
+     [ st119q1n2*3.84299 ];
+     [ st119q1n3*3.52798 ];
+     [ st119q1n4*3.52789 ];
+     [ st119q1n5*3.40520 ];
+     ![ s123q1n1@3.35639 ];
+     ![ s123q1n2*3.52834 ];
+     ![ s123q1n3*3.48345 ];
+     ![ s123q1n4*3.59836 ];
+     [ anx*-0.18581 ];
+     [ mot*-1.19630 ];
+     ![ sup*-0.16360 ];
+
+     st118q1n1*0.38591;
+     st118q1n2*0.43102;
+     st118q1n3*0.31912;
+     st118q1n4*0.36458;
+     st118q1n5*0.53958;
+     st119q1n1*0.31386;
+     st119q1n2*0.27425;
+     st119q1n3*0.43769;
+     st119q1n4*0.39733;
+     st119q1n5*0.38611;
+     !s123q1n1*0.34088;
+     !s123q1n2*0.20820;
+     !s123q1n3*0.22122;
+     !s123q1n4*0.22403;
+     anx*1.09163;
+     mot*0.96839;
+     !sup*0.73608;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 528:
+
+     anx BY st118q1n1@0.62718;
+     anx BY st118q1n2*0.55876;
+     anx BY st118q1n3*0.70395;
+     anx BY st118q1n4*0.53317;
+     anx BY st118q1n5*0.55473;
+     mot BY st119q1n1@0.34348;
+     mot BY st119q1n2*0.30024;
+     mot BY st119q1n3*0.71509;
+     mot BY st119q1n4*0.38539;
+     mot BY st119q1n5*0.70251;
+     !sup BY s123q1n1@0.47099;
+     !sup BY s123q1n2*0.54646;
+     !sup BY s123q1n3*0.55212;
+     !sup BY s123q1n4*0.52994;
+
+     st118q1n1 WITH st118q1n2*0.11402;
+     st119q1n1 WITH st119q1n2*0.09550;
+
+
+     [ st118q1n1@2.85339 ];
+     [ st118q1n2*2.95625 ];
+     [ st118q1n3*2.96057 ];
+     [ st118q1n4*2.37723 ];
+     [ st118q1n5*2.61797 ];
+     [ st119q1n1@3.81906 ];
+     [ st119q1n2*3.76146 ];
+     [ st119q1n3*3.60628 ];
+     [ st119q1n4*3.47156 ];
+     [ st119q1n5*3.42219 ];
+     ![ s123q1n1@3.50953 ];
+     ![ s123q1n2*3.52525 ];
+     ![ s123q1n3*3.55625 ];
+     ![ s123q1n4*3.49308 ];
+     [ anx*-1.01272 ];
+     [ mot*-1.72104 ];
+     ![ sup*-0.08512 ];
+
+     st118q1n1*0.27317;
+     st118q1n2*0.37046;
+     st118q1n3*0.31830;
+     st118q1n4*0.26344;
+     st118q1n5*0.37944;
+     st119q1n1*0.28566;
+     st119q1n2*0.26557;
+     st119q1n3*0.26060;
+     st119q1n4*0.30531;
+     st119q1n5*0.24734;
+     !s123q1n1*0.17262;
+     !s123q1n2*0.12480;
+     !s123q1n3*0.12090;
+     !s123q1n4*0.16858;
+     anx*0.84923;
+     mot*0.72043;
+     !sup*0.74264;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 554:
+
+     anx BY st118q1n1@0.56307;
+     anx BY st118q1n2*0.57954;
+     anx BY st118q1n3*0.62983;
+     anx BY st118q1n4*0.66561;
+     anx BY st118q1n5*0.61515;
+     mot BY st119q1n1@0.49859;
+     mot BY st119q1n2*0.45147;
+     mot BY st119q1n3*0.54153;
+     mot BY st119q1n4*0.50345;
+     mot BY st119q1n5*0.61261;
+     !sup BY s123q1n1@0.51581;
+     !sup BY s123q1n2*0.49592;
+     !sup BY s123q1n3*0.56405;
+     !sup BY s123q1n4*0.53198;
+
+     st118q1n1 WITH st118q1n2*0.11829;
+     st119q1n1 WITH st119q1n2*0.06663;
+
+
+     [ st118q1n1@2.73077 ];
+     [ st118q1n2*2.80018 ];
+     [ st118q1n3*2.88993 ];
+     [ st118q1n4*2.53792 ];
+     [ st118q1n5*2.72249 ];
+     [ st119q1n1@3.70341 ];
+     [ st119q1n2*3.82479 ];
+     [ st119q1n3*3.72628 ];
+     [ st119q1n4*3.43710 ];
+     [ st119q1n5*3.43862 ];
+    ! [ s123q1n1@3.46132 ];
+    ! [ s123q1n2*3.63688 ];
+     ![ s123q1n3*3.41609 ];
+     ![ s123q1n4*3.50725 ];
+     [ anx*0.02174 ];
+     [ mot*-0.84558 ];
+     ![ sup*-0.14389 ];
+
+     st118q1n1*0.33157;
+     st118q1n2*0.39687;
+     st118q1n3*0.31707;
+     st118q1n4*0.31499;
+     st118q1n5*0.39596;
+     st119q1n1*0.22646;
+     st119q1n2*0.18569;
+     st119q1n3*0.23496;
+     st119q1n4*0.29065;
+     st119q1n5*0.27197;
+    ! s123q1n1*0.17542;
+    ! s123q1n2*0.13285;
+    ! s123q1n3*0.18204;
+    ! s123q1n4*0.17816;
+     anx*0.96594;
+     mot*1.10145;
+     !sup*1.27973;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 578:
+
+     anx BY st118q1n1@0.60334;
+     anx BY st118q1n2*0.57287;
+     anx BY st118q1n3*0.62027;
+     anx BY st118q1n4*0.64912;
+     anx BY st118q1n5*0.58823;
+     mot BY st119q1n1@0.52405;
+     mot BY st119q1n2*0.36261;
+     mot BY st119q1n3*0.58772;
+     mot BY st119q1n4*0.43953;
+     mot BY st119q1n5*0.67633;
+     !sup BY s123q1n1@0.49354;
+     !sup BY s123q1n2*0.54452;
+     !sup BY s123q1n3*0.56214;
+     !sup BY s123q1n4*0.48221;
+
+     st118q1n1 WITH st118q1n2*0.09048;
+     st119q1n1 WITH st119q1n2*0.09055;
+
+
+     [ st118q1n1@2.69526 ];
+     [ st118q1n2*2.96134 ];
+     [ st118q1n3*2.87450 ];
+     [ st118q1n4*2.64698 ];
+     [ st118q1n5*2.66045 ];
+     [ st119q1n1@3.75823 ];
+     [ st119q1n2*3.85905 ];
+     [ st119q1n3*3.47648 ];
+     [ st119q1n4*3.39438 ];
+     [ st119q1n5*3.50920 ];
+     ![ s123q1n1@3.46604 ];
+     ![ s123q1n2*3.53996 ];
+     ![ s123q1n3*3.50223 ];
+     ![ s123q1n4*3.52069 ];
+     [ anx*-0.28259 ];
+     [ mot*-0.97658 ];
+     ![ sup*-0.09794 ];
+
+     st118q1n1*0.34561;
+     st118q1n2*0.40949;
+     st118q1n3*0.32222;
+     st118q1n4*0.36045;
+     st118q1n5*0.41069;
+     st119q1n1*0.30922;
+     st119q1n2*0.23381;
+     st119q1n3*0.34481;
+     st119q1n4*0.34315;
+     st119q1n5*0.26504;
+     !s123q1n1*0.18265;
+     !s123q1n2*0.08958;
+     !s123q1n3*0.11830;
+     !s123q1n4*0.22112;
+     anx*1.30654;
+     mot*1.23229;
+     !sup*1.13379;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+model 604:
+
+     anx BY st118q1n1@0.47632;
+     anx BY st118q1n2*0.32745;
+     anx BY st118q1n3*0.45070;
+     anx BY st118q1n4*0.71201;
+     anx BY st118q1n5*0.69269;
+     mot BY st119q1n1@0.48919;
+     mot BY st119q1n2*0.46795;
+     mot BY st119q1n3*0.61537;
+     mot BY st119q1n4*0.26567;
+     mot BY st119q1n5*0.59743;
+     !sup BY s123q1n1@0.48247;
+     !sup BY s123q1n2*0.52726;
+     !sup BY s123q1n3*0.53017;
+     !sup BY s123q1n4*0.55246;
+
+     st118q1n1 WITH st118q1n2*0.10320;
+     st119q1n1 WITH st119q1n2*0.04472;
+
+     [ st118q1n1@2.71726 ];
+     [ st118q1n2*3.09353 ];
+     [ st118q1n3*2.93289 ];
+     [ st118q1n4*2.52770 ];
+     [ st118q1n5*2.61485 ];
+     [ st119q1n1@3.76603 ];
+     [ st119q1n2*3.80111 ];
+     [ st119q1n3*3.62725 ];
+     [ st119q1n4*2.43558 ];
+     [ st119q1n5*3.52985 ];
+     ![ s123q1n1@3.54120 ];
+     ![ s123q1n2*3.55868 ];
+     ![ s123q1n3*3.37402 ];
+     ![ s123q1n4*3.56359 ];
+     [ anx*-0.21947 ];
+     [ mot*-0.52228 ];
+     ![ sup*-0.41462 ];
+
+     st118q1n1*0.44320;
+     st118q1n2*0.64188;
+     st118q1n3*0.51819;
+     st118q1n4*0.35971;
+     st118q1n5*0.46852;
+     st119q1n1*0.20928;
+     st119q1n2*0.21456;
+     st119q1n3*0.21660;
+     st119q1n4*0.80663;
+     st119q1n5*0.23020;
+     !s123q1n1*0.22536;
+     !s123q1n2*0.18341;
+     !s123q1n3*0.26915;
+     !s123q1n4*0.28492;
+     anx*0.63538;
+     mot*0.68358;
+     !sup*1.02265;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 616:
+
+     anx BY st118q1n1@0.57743;
+     anx BY st118q1n2*0.50758;
+     anx BY st118q1n3*0.72420;
+     anx BY st118q1n4*0.58886;
+     anx BY st118q1n5*0.62831;
+     mot BY st119q1n1@0.59473;
+     mot BY st119q1n2*0.44774;
+     mot BY st119q1n3*0.51046;
+     mot BY st119q1n4*0.36919;
+     mot BY st119q1n5*0.62835;
+     !sup BY s123q1n1@0.43518;
+     !sup BY s123q1n2*0.58668;
+     !sup BY s123q1n3*0.56949;
+     !sup BY s123q1n4*0.50356;
+
+     st118q1n1 WITH st118q1n2*0.15108;
+     st119q1n1 WITH st119q1n2*0.02470;
+
+
+     [ st118q1n1@2.95481 ];
+     [ st118q1n2*3.05730 ];
+     [ st118q1n3*2.78297 ];
+     [ st118q1n4*2.38228 ];
+     [ st118q1n5*2.69633 ];
+     [ st119q1n1@3.72169 ];
+     [ st119q1n2*3.84243 ];
+     [ st119q1n3*3.53311 ];
+     [ st119q1n4*3.47287 ];
+     [ st119q1n5*3.49158 ];
+     ![ s123q1n1@3.57606 ];
+     ![ s123q1n2*3.51650 ];
+     ![ s123q1n3*3.52027 ];
+     ![ s123q1n4*3.47449 ];
+     [ anx*-0.50947 ];
+     [ mot*-1.60952 ];
+     ![ sup*-0.55950 ];
+
+     st118q1n1*0.37747;
+     st118q1n2*0.37348;
+     st118q1n3*0.34213;
+     st118q1n4*0.34908;
+     st118q1n5*0.40559;
+     st119q1n1*0.32755;
+     st119q1n2*0.29273;
+     st119q1n3*0.42981;
+     st119q1n4*0.39711;
+     st119q1n5*0.30476;
+     !s123q1n1*0.20245;
+     !s123q1n2*0.12494;
+     !s123q1n3*0.16661;
+     !s123q1n4*0.33238;
+     anx*0.99180;
+     mot*0.89449;
+     !sup*0.98638;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 620:
+
+     anx BY st118q1n1@0.49667;
+     anx BY st118q1n2*0.44491;
+     anx BY st118q1n3*0.74419;
+     anx BY st118q1n4*0.66570;
+     anx BY st118q1n5*0.62271;
+     mot BY st119q1n1@0.34624;
+     mot BY st119q1n2*0.35142;
+     mot BY st119q1n3*0.57744;
+     mot BY st119q1n4*0.49793;
+     mot BY st119q1n5*0.69630;
+     !sup BY s123q1n1@0.47955;
+     !sup BY s123q1n2*0.52883;
+     !sup BY s123q1n3*0.56638;
+     !sup BY s123q1n4*0.52543;
+
+     st118q1n1 WITH st118q1n2*0.13273;
+     st119q1n1 WITH st119q1n2*0.11465;
+
+
+     [ st118q1n1@3.03399 ];
+     [ st118q1n2*3.20027 ];
+     [ st118q1n3*2.78707 ];
+     [ st118q1n4*2.34330 ];
+     [ st118q1n5*2.69925 ];
+     [ st119q1n1@3.84895 ];
+     [ st119q1n2*3.79436 ];
+     [ st119q1n3*3.61761 ];
+     [ st119q1n4*3.37138 ];
+     [ st119q1n5*3.48891 ];
+     ![ s123q1n1@3.60676 ];
+     ![ s123q1n2*3.52934 ];
+     ![ s123q1n3*3.43963 ];
+     ![ s123q1n4*3.50505 ];
+     [ anx*0.13442 ];
+     [ mot*-0.94950 ];
+     ![ sup*0.12929 ];
+
+     st118q1n1*0.31217;
+     st118q1n2*0.37048;
+     st118q1n3*0.34067;
+     st118q1n4*0.37960;
+     st118q1n5*0.41810;
+     st119q1n1*0.23936;
+     st119q1n2*0.31314;
+     st119q1n3*0.33645;
+     st119q1n4*0.43081;
+     st119q1n5*0.29138;
+     !s123q1n1*0.12259;
+     !s123q1n2*0.12858;
+     !s123q1n3*0.15097;
+     !s123q1n4*0.18172;
+     anx*0.89420;
+     mot*0.94590;
+     !sup*0.78712;
+     
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 634:
+
+     anx BY st118q1n1@0.53720;
+     anx BY st118q1n2*0.50783;
+     anx BY st118q1n3*0.72180;
+     anx BY st118q1n4*0.74063;
+     anx BY st118q1n5*0.61521;
+     mot BY st119q1n1@0.52409;
+     mot BY st119q1n2*0.49259;
+     mot BY st119q1n3*0.56217;
+     mot BY st119q1n4*0.50590;
+     mot BY st119q1n5*0.54731;
+     !sup BY s123q1n1@0.49315;
+     !sup BY s123q1n2*0.54750;
+     !sup BY s123q1n3*0.55559;
+     !sup BY s123q1n4*0.52418;
+
+     st118q1n1 WITH st118q1n2*0.23274;
+     st119q1n1 WITH st119q1n2*0.07140;
+
+
+     [ st118q1n1@2.87546 ];
+     [ st118q1n2*2.91484 ];
+     [ st118q1n3*2.79962 ];
+     [ st118q1n4*2.54403 ];
+     [ st118q1n5*2.63850 ];
+     [ st119q1n1@3.72084 ];
+     [ st119q1n2*3.75646 ];
+     [ st119q1n3*3.63039 ];
+     [ st119q1n4*3.45658 ];
+     [ st119q1n5*3.56704 ];
+     ![ s123q1n1@3.28309 ];
+     ![ s123q1n2*3.55634 ];
+     ![ s123q1n3*3.45767 ];
+     ![ s123q1n4*3.59635 ];
+     [ anx*-0.07339 ];
+     [ mot*-0.29981 ];
+    ! [ sup*-0.14115 ];
+
+     st118q1n1*0.49184;
+     st118q1n2*0.63474;
+     st118q1n3*0.39614;
+     st118q1n4*0.41126;
+     st118q1n5*0.63219;
+     st119q1n1*0.21282;
+     st119q1n2*0.16808;
+     st119q1n3*0.21874;
+     st119q1n4*0.32410;
+     st119q1n5*0.24612;
+     !s123q1n1*0.33105;
+     !s123q1n2*0.16276;
+     !s123q1n3*0.19959;
+     !s123q1n4*0.21328;
+     anx*0.85152;
+     mot*1.12699;
+     !sup*1.33873;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 643:
+
+     anx BY st118q1n1@0.64028;
+     anx BY st118q1n2*0.47975;
+     anx BY st118q1n3*0.68693;
+     anx BY st118q1n4*0.60963;
+     anx BY st118q1n5*0.58690;
+     mot BY st119q1n1@0.50736;
+     mot BY st119q1n2*0.42083;
+     mot BY st119q1n3*0.58211;
+     mot BY st119q1n4*0.47994;
+     mot BY st119q1n5*0.58844;
+     !sup BY s123q1n1@0.46185;
+     !sup BY s123q1n2*0.56058;
+     !sup BY s123q1n3*0.56800;
+     !sup BY s123q1n4*0.47998;
+
+     st118q1n1 WITH st118q1n2*0.07884;
+     st119q1n1 WITH st119q1n2*0.05164;
+
+
+     [ st118q1n1@2.75213 ];
+     [ st118q1n2*2.95600 ];
+     [ st118q1n3*2.74475 ];
+     [ st118q1n4*2.54923 ];
+     [ st118q1n5*2.89090 ];
+     [ st119q1n1@3.69374 ];
+     [ st119q1n2*3.83230 ];
+     [ st119q1n3*3.69044 ];
+     [ st119q1n4*3.78319 ];
+     [ st119q1n5*3.40799 ];
+     ![ s123q1n1@3.54065 ];
+     ![ s123q1n2*3.55807 ];
+     ![ s123q1n3*3.52932 ];
+     ![ s123q1n4*3.23906 ];
+     [ anx*-0.39343 ];
+     [ mot*-1.27289 ];
+     ![ sup*-0.44589 ];
+
+     st118q1n1*0.31571;
+     st118q1n2*0.38226;
+     st118q1n3*0.32282;
+     st118q1n4*0.33221;
+     st118q1n5*0.45446;
+     st119q1n1*0.28058;
+     st119q1n2*0.20795;
+     st119q1n3*0.29469;
+     st119q1n4*0.22384;
+     st119q1n5*0.34269;
+     !s123q1n1*0.22017;
+     !s123q1n2*0.14858;
+     !s123q1n3*0.19384;
+     !s123q1n4*0.32941;
+     anx*0.84088;
+     mot*0.86829;
+     !sup*0.88538;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 702:
+
+     anx BY st118q1n1@0.58626;
+     anx BY st118q1n2*0.53908;
+     anx BY st118q1n3*0.63679;
+     anx BY st118q1n4*0.70802;
+     anx BY st118q1n5*0.59911;
+     mot BY st119q1n1@0.54035;
+     mot BY st119q1n2*0.41196;
+     mot BY st119q1n3*0.54406;
+     mot BY st119q1n4*0.49859;
+     mot BY st119q1n5*0.62212;
+     !sup BY s123q1n1@0.43722;
+     !sup BY s123q1n2*0.47218;
+     !sup BY s123q1n3*0.60738;
+     !sup BY s123q1n4*0.56565;
+
+     st118q1n1 WITH st118q1n2*0.12053;
+     st119q1n1 WITH st119q1n2*0.03944;
+
+
+     [ st118q1n1@2.75371 ];
+     [ st118q1n2*3.07938 ];
+     [ st118q1n3*2.80994 ];
+     [ st118q1n4*2.48515 ];
+     [ st118q1n5*2.70590 ];
+     [ st119q1n1@3.66843 ];
+     [ st119q1n2*3.83425 ];
+     [ st119q1n3*3.71007 ];
+     [ st119q1n4*3.32259 ];
+     [ st119q1n5*3.58258 ];
+     ![ s123q1n1@3.29307 ];
+     ![ s123q1n2*3.63267 ];
+     ![ s123q1n3*3.42510 ];
+     ![ s123q1n4*3.51793 ];
+     [ anx*0.31892 ];
+     [ mot*-0.65413 ];
+    ! [ sup*-0.36371 ];
+
+     st118q1n1*0.34937;
+     st118q1n2*0.36027;
+     st118q1n3*0.33512;
+     st118q1n4*0.31737;
+     st118q1n5*0.41349;
+     st119q1n1*0.24631;
+     st119q1n2*0.19235;
+     st119q1n3*0.23342;
+     st119q1n4*0.39948;
+     st119q1n5*0.25255;
+     !s123q1n1*0.31509;
+     !s123q1n2*0.17077;
+     !s123q1n3*0.15662;
+     !s123q1n4*0.18575;
+     anx*0.84606;
+     mot*0.91544;
+     !sup*1.13013;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 703:
+
+     anx BY st118q1n1@0.58422;
+     anx BY st118q1n2*0.56192;
+     anx BY st118q1n3*0.71446;
+     anx BY st118q1n4*0.58519;
+     anx BY st118q1n5*0.60372;
+     mot BY st119q1n1@0.57692;
+     mot BY st119q1n2*0.47082;
+     mot BY st119q1n3*0.55146;
+     mot BY st119q1n4*0.43026;
+     mot BY st119q1n5*0.57203;
+     !sup BY s123q1n1@0.49377;
+     !sup BY s123q1n2*0.50839;
+     !sup BY s123q1n3*0.55665;
+     !sup BY s123q1n4*0.54741;
+
+     st118q1n1 WITH st118q1n2*0.09302;
+     st119q1n1 WITH st119q1n2*0.04462;
+
+
+     [ st118q1n1@2.92327 ];
+     [ st118q1n2*2.94346 ];
+     [ st118q1n3*2.80377 ];
+     [ st118q1n4*2.44380 ];
+     [ st118q1n5*2.72534 ];
+     [ st119q1n1@3.67773 ];
+     [ st119q1n2*3.93509 ];
+     [ st119q1n3*3.64058 ];
+     [ st119q1n4*3.41037 ];
+     [ st119q1n5*3.20898 ];
+     ![ s123q1n1@3.52478 ];
+     ![ s123q1n2*3.61896 ];
+     ![ s123q1n3*3.47372 ];
+     ![ s123q1n4*3.43825 ];
+     [ anx*-0.54452 ];
+     [ mot*-1.35395 ];
+    ! [ sup*-0.48189 ];
+
+     st118q1n1*0.38416;
+     st118q1n2*0.35989;
+     st118q1n3*0.33809;
+     st118q1n4*0.37433;
+     st118q1n5*0.47089;
+     st119q1n1*0.31794;
+     st119q1n2*0.26791;
+     st119q1n3*0.34192;
+     st119q1n4*0.39878;
+     st119q1n5*0.38050;
+     !s123q1n1*0.21750;
+     !s123q1n2*0.18381;
+     !s123q1n3*0.20775;
+     !s123q1n4*0.24678;
+     anx*0.92046;
+     mot*0.98768;
+     !sup*1.16147;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 705:
+
+     anx BY st118q1n1@0.60509;
+     anx BY st118q1n2*0.58851;
+     anx BY st118q1n3*0.69251;
+     anx BY st118q1n4*0.61497;
+     anx BY st118q1n5*0.58071;
+     mot BY st119q1n1@0.57280;
+     mot BY st119q1n2*0.43663;
+     mot BY st119q1n3*0.57332;
+     mot BY st119q1n4*0.42976;
+     mot BY st119q1n5*0.63912;
+     !sup BY s123q1n1@0.44256;
+     !sup BY s123q1n2*0.49279;
+     !sup BY s123q1n3*0.58256;
+     !sup BY s123q1n4*0.58346;
+
+     st118q1n1 WITH st118q1n2*0.09104;
+     st119q1n1 WITH st119q1n2*0.05845;
+
+
+     [ st118q1n1@2.81541 ];
+     [ st118q1n2*3.00889 ];
+     [ st118q1n3*2.86077 ];
+     [ st118q1n4*2.41742 ];
+     [ st118q1n5*2.67656 ];
+     [ st119q1n1@3.78267 ];
+     [ st119q1n2*3.86201 ];
+     [ st119q1n3*3.47658 ];
+     [ st119q1n4*3.41106 ];
+     [ st119q1n5*3.44774 ];
+     ![ s123q1n1@3.47715 ];
+     ![ s123q1n2*3.64446 ];
+     ![ s123q1n3*3.41813 ];
+     ![ s123q1n4*3.49809 ];
+     [ anx*-0.25644 ];
+     [ mot*-1.57433 ];
+     ![ sup*-0.10670 ];
+
+     st118q1n1*0.33600;
+     st118q1n2*0.34248;
+     st118q1n3*0.36198;
+     st118q1n4*0.39281;
+     st118q1n5*0.52987;
+     st119q1n1*0.33440;
+     st119q1n2*0.37453;
+     st119q1n3*0.36450;
+     st119q1n4*0.38846;
+     st119q1n5*0.34472;
+     !s123q1n1*0.25955;
+     !s123q1n2*0.16335;
+     !s123q1n3*0.30554;
+     !s123q1n4*0.20722;
+     anx*0.87148;
+     mot*0.97812;
+     !sup*0.69501;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 724:
+
+     anx BY st118q1n1@0.54978;
+     anx BY st118q1n2*0.31868;
+     anx BY st118q1n3*0.78761;
+     anx BY st118q1n4*0.65450;
+     anx BY st118q1n5*0.56835;
+     mot BY st119q1n1@0.47529;
+     mot BY st119q1n2*0.31111;
+     mot BY st119q1n3*0.57013;
+     mot BY st119q1n4*0.49544;
+     mot BY st119q1n5*0.67842;
+     !sup BY s123q1n1@0.39649;
+     !sup BY s123q1n2*0.52622;
+     !sup BY s123q1n3*0.57175;
+     !sup BY s123q1n4*0.56635;
+
+     st118q1n1 WITH st118q1n2*0.12176;
+     st119q1n1 WITH st119q1n2*0.10802;
+
+
+     [ st118q1n1@2.88453 ];
+     [ st118q1n2*3.27035 ];
+     [ st118q1n3*2.81973 ];
+     [ st118q1n4*2.44944 ];
+     [ st118q1n5*2.58010 ];
+     [ st119q1n1@3.70009 ];
+     [ st119q1n2*3.88826 ];
+     [ st119q1n3*3.54793 ];
+     [ st119q1n4*3.23196 ];
+     [ st119q1n5*3.57313 ];
+     ![ s123q1n1@3.57659 ];
+     ![ s123q1n2*3.51500 ];
+     ![ s123q1n3*3.47961 ];
+     ![ s123q1n4*3.50145 ];
+     [ anx*0.07415 ];
+     [ mot*-1.34140 ];
+     ![ sup*-0.09348 ];
+
+     st118q1n1*0.44416;
+     st118q1n2*0.49499;
+     st118q1n3*0.43967;
+     st118q1n4*0.53177;
+     st118q1n5*0.61451;
+     st119q1n1*0.42292;
+     st119q1n2*0.32076;
+     st119q1n3*0.46413;
+     st119q1n4*0.60482;
+     st119q1n5*0.27244;
+     !s123q1n1*0.24025;
+     !s123q1n2*0.17990;
+     !s123q1n3*0.17536;
+     !s123q1n4*0.22704;
+     anx*0.81395;
+     mot*1.11100;
+     !sup*1.11550;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+model 752:
+
+     anx BY st118q1n1@0.57512;
+     anx BY st118q1n2*0.56573;
+     anx BY st118q1n3*0.65684;
+     anx BY st118q1n4*0.65529;
+     anx BY st118q1n5*0.60451;
+     mot BY st119q1n1@0.56087;
+     mot BY st119q1n2*0.40371;
+     mot BY st119q1n3*0.54101;
+     mot BY st119q1n4*0.40538;
+     mot BY st119q1n5*0.68365;
+     !sup BY s123q1n1@0.47338;
+     !sup BY s123q1n2*0.50772;
+     !sup BY s123q1n3*0.55886;
+     !sup BY s123q1n4*0.55977;
+
+     st118q1n1 WITH st118q1n2*0.17789;
+     st119q1n1 WITH st119q1n2*0.09395;
+
+
+     [ st118q1n1@2.73574 ];
+     [ st118q1n2*2.76210 ];
+     [ st118q1n3*2.87177 ];
+     [ st118q1n4*2.50358 ];
+     [ st118q1n5*2.80830 ];
+     [ st119q1n1@3.71918 ];
+     [ st119q1n2*3.82704 ];
+     [ st119q1n3*3.56979 ];
+     [ st119q1n4*3.46243 ];
+     [ st119q1n5*3.49908 ];
+     ![ s123q1n1@3.41832 ];
+     ![ s123q1n2*3.55463 ];
+     ![ s123q1n3*3.50369 ];
+     ![ s123q1n4*3.51039 ];
+     [ anx*-0.24634 ];
+     [ mot*-0.93064 ];
+     ![ sup*-0.04731 ];
+
+     st118q1n1*0.40643;
+     st118q1n2*0.51914;
+     st118q1n3*0.34007;
+     st118q1n4*0.29992;
+     st118q1n5*0.40590;
+     st119q1n1*0.31882;
+     st119q1n2*0.27797;
+     st119q1n3*0.38322;
+     st119q1n4*0.36535;
+     st119q1n5*0.32064;
+    ! s123q1n1*0.22856;
+     !s123q1n2*0.14411;
+     !s123q1n3*0.14749;
+     !s123q1n4*0.16518;
+     anx*1.15290;
+     mot*1.20079;
+     !sup*1.15255;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 756:
+
+     anx BY st118q1n1@0.59172;
+     anx BY st118q1n2*0.57686;
+     anx BY st118q1n3*0.73162;
+     anx BY st118q1n4*0.51459;
+     anx BY st118q1n5*0.55386;
+     mot BY st119q1n1@0.44978;
+     mot BY st119q1n2*0.31947;
+     mot BY st119q1n3*0.69642;
+     mot BY st119q1n4*0.39871;
+     mot BY st119q1n5*0.71481;
+     !sup BY s123q1n1@0.42046;
+     !sup BY s123q1n2*0.52577;
+     !sup BY s123q1n3*0.60658;
+     !sup BY s123q1n4*0.53048;
+
+     st118q1n1 WITH st118q1n2*0.13237;
+     st119q1n1 WITH st119q1n2*0.12908;
+
+
+     [ st118q1n1@2.97955 ];
+     [ st118q1n2*3.12366 ];
+     [ st118q1n3*2.79845 ];
+     [ st118q1n4*2.31020 ];
+     [ st118q1n5*2.62949 ];
+     [ st119q1n1@3.75847 ];
+     [ st119q1n2*3.88439 ];
+     [ st119q1n3*3.46150 ];
+     [ st119q1n4*3.44381 ];
+     [ st119q1n5*3.46929 ];
+     ![ s123q1n1@3.59817 ];
+     ![ s123q1n2*3.56502 ];
+     ![ s123q1n3*3.45725 ];
+     ![ s123q1n4*3.46638 ];
+     [ anx*-0.92636 ];
+     [ mot*-1.63004 ];
+     ![ sup*0.09836 ];
+
+     st118q1n1*0.37520;
+     st118q1n2*0.42525;
+     st118q1n3*0.32941;
+     st118q1n4*0.45858;
+     st118q1n5*0.58464;
+     st119q1n1*0.43909;
+     st119q1n2*0.37880;
+     st119q1n3*0.31786;
+     st119q1n4*0.50274;
+     st119q1n5*0.34254;
+    ! s123q1n1*0.18536;
+    ! s123q1n2*0.14809;
+    ! s123q1n3*0.17600;
+    ! s123q1n4*0.26492;
+     anx*1.11080;
+     mot*1.08428;
+     !sup*0.88058;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 764:
+
+     anx BY st118q1n1@0.58033;
+     anx BY st118q1n2*0.57053;
+     anx BY st118q1n3*0.66614;
+     anx BY st118q1n4*0.61519;
+     anx BY st118q1n5*0.60263;
+     mot BY st119q1n1@0.53648;
+     mot BY st119q1n2*0.55633;
+     mot BY st119q1n3*0.53664;
+     mot BY st119q1n4*0.28868;
+     mot BY st119q1n5*0.41800;
+     !sup BY s123q1n1@0.40654;
+     !sup BY s123q1n2*0.53946;
+     !sup BY s123q1n3*0.54854;
+     !sup BY s123q1n4*0.57470;
+
+     st118q1n1 WITH st118q1n2*0.05376;
+     st119q1n1 WITH st119q1n2*0.01514;
+
+
+     [ st118q1n1@2.79288 ];
+     [ st118q1n2*2.98865 ];
+     [ st118q1n3*2.78325 ];
+     [ st118q1n4*2.55907 ];
+     [ st118q1n5*2.68570 ];
+     [ st119q1n1@3.68652 ];
+     [ st119q1n2*3.86860 ];
+     [ st119q1n3*3.81601 ];
+     [ st119q1n4*2.96826 ];
+     [ st119q1n5*3.30458 ];
+    ! [ s123q1n1@3.25826 ];
+    ! [ s123q1n2*3.59280 ];
+    ! [ s123q1n3*3.42791 ];
+    ! [ s123q1n4*3.53511 ];
+     [ anx*-0.17695 ];
+     [ mot*-0.73545 ];
+     ![ sup*-0.26949 ];
+
+     st118q1n1*0.25498;
+     st118q1n2*0.26226;
+     st118q1n3*0.20034;
+     st118q1n4*0.30745;
+     st118q1n5*0.32561;
+     st119q1n1*0.22085;
+     st119q1n2*0.11114;
+     st119q1n3*0.12698;
+     st119q1n4*0.41514;
+     st119q1n5*0.37887;
+     !s123q1n1*0.18302;
+     !s123q1n2*0.16307;
+     !s123q1n3*0.15782;
+     !s123q1n4*0.15867;
+     anx*0.72675;
+     mot*0.67522;
+     !sup*0.53392;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 784:
+
+     anx BY st118q1n1@0.52329;
+     anx BY st118q1n2*0.47312;
+     anx BY st118q1n3*0.71843;
+     anx BY st118q1n4*0.71480;
+     anx BY st118q1n5*0.60937;
+     mot BY st119q1n1@0.50894;
+     mot BY st119q1n2*0.44027;
+     mot BY st119q1n3*0.56358;
+     mot BY st119q1n4*0.52168;
+     mot BY st119q1n5*0.56497;
+     !sup BY s123q1n1@0.45673;
+     !sup BY s123q1n2*0.53963;
+     !sup BY s123q1n3*0.58283;
+     !sup BY s123q1n4*0.51807;
+
+     st118q1n1 WITH st118q1n2*0.26812;
+     st119q1n1 WITH st119q1n2*0.07129;
+  
+
+     [ st118q1n1@2.83462 ];
+     [ st118q1n2*2.99963 ];
+     [ st118q1n3*2.76187 ];
+     [ st118q1n4*2.45872 ];
+     [ st118q1n5*2.79631 ];
+     [ st119q1n1@3.66717 ];
+     [ st119q1n2*3.71777 ];
+     [ st119q1n3*3.64175 ];
+     [ st119q1n4*3.48954 ];
+     [ st119q1n5*3.59086 ];
+     ![ s123q1n1@3.16565 ];
+     ![ s123q1n2*3.54924 ];
+     ![ s123q1n3*3.46432 ];
+     ![ s123q1n4*3.62359 ];
+     [ anx*-0.10167 ];
+     [ mot*-0.25247 ];
+     ![ sup*-0.09132 ];
+
+     st118q1n1*0.52162;
+     st118q1n2*0.69358;
+     st118q1n3*0.43553;
+     st118q1n4*0.43029;
+     st118q1n5*0.56294;
+     st119q1n1*0.24122;
+     st119q1n2*0.21761;
+     st119q1n3*0.18213;
+     st119q1n4*0.28498;
+     st119q1n5*0.21785;
+     !s123q1n1*0.37725;
+     !s123q1n2*0.18667;
+     !s123q1n3*0.19457;
+     !s123q1n4*0.20214;
+     anx*0.80240;
+     mot*0.92834;
+     !sup*0.98854;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 788:
+
+     anx BY st118q1n1@0.35434;
+     anx BY st118q1n2*0.24452;
+     anx BY st118q1n3*0.75152;
+     anx BY st118q1n4*0.75279;
+     anx BY st118q1n5*0.43150;
+     mot BY st119q1n1@0.47902;
+     mot BY st119q1n2*0.45358;
+     mot BY st119q1n3*0.56988;
+     mot BY st119q1n4*0.50000;
+     mot BY st119q1n5*0.59265;
+     !sup BY s123q1n1@0.49756;
+     !sup BY s123q1n2*0.53435;
+     !sup BY s123q1n3*0.54411;
+     !sup BY s123q1n4*0.52577;
+
+     st118q1n1 WITH st118q1n2*0.29141;
+     st119q1n1 WITH st119q1n2*0.03801;
+ 
+
+     [ st118q1n1@2.61550 ];
+     [ st118q1n2*2.94946 ];
+     [ st118q1n3*2.82217 ];
+     [ st118q1n4*2.76596 ];
+     [ st118q1n5*2.62684 ];
+     [ st119q1n1@3.73838 ];
+     [ st119q1n2*3.63764 ];
+     [ st119q1n3*3.51995 ];
+     [ st119q1n4*3.45887 ];
+     [ st119q1n5*3.61161 ];
+     ![ s123q1n1@3.30700 ];
+     ![ s123q1n2*3.62163 ];
+     ![ s123q1n3*3.36164 ];
+     ![ s123q1n4*3.67026 ];
+     [ anx*-0.24488 ];
+     [ mot*-0.29112 ];
+     ![ sup*-0.25829 ];
+
+     st118q1n1*0.65485;
+     st118q1n2*0.90053;
+     st118q1n3*0.32765;
+     st118q1n4*0.27917;
+     st118q1n5*0.91293;
+     st119q1n1*0.21537;
+     st119q1n2*0.21924;
+     st119q1n3*0.28762;
+     st119q1n4*0.32950;
+     st119q1n5*0.22239;
+     !s123q1n1*0.41963;
+     !s123q1n2*0.20368;
+     !s123q1n3*0.43264;
+     !s123q1n4*0.24155;
+     anx*1.10409;
+     mot*0.66985;
+     !sup*0.80775;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 792:
+
+     anx BY st118q1n1@0.58899;
+     anx BY st118q1n2*0.58824;
+     anx BY st118q1n3*0.70219;
+     anx BY st118q1n4*0.61767;
+     anx BY st118q1n5*0.48918;
+     mot BY st119q1n1@0.52289;
+     mot BY st119q1n2*0.49942;
+     mot BY st119q1n3*0.54826;
+     mot BY st119q1n4*0.42193;
+     mot BY st119q1n5*0.57632;
+     !sup BY s123q1n1@0.43823;
+     !sup BY s123q1n2*0.51374;
+     !sup BY s123q1n3*0.56093;
+     !sup BY s123q1n4*0.57001;
+
+     st118q1n1 WITH st118q1n2*0.09023;
+     st119q1n1 WITH st119q1n2*0.08630;
+
+
+     [ st118q1n1@2.80728 ];
+     [ st118q1n2*2.89100 ];
+     [ st118q1n3*2.62876 ];
+     [ st118q1n4*2.57499 ];
+     [ st118q1n5*2.90716 ];
+     [ st119q1n1@3.81308 ];
+     [ st119q1n2*3.79250 ];
+     [ st119q1n3*3.55738 ];
+     [ st119q1n4*3.15465 ];
+     [ st119q1n5*3.62693 ];
+     ![ s123q1n1@3.16004 ];
+     ![ s123q1n2*3.63189 ];
+     ![ s123q1n3*3.50438 ];
+     ![ s123q1n4*3.44996 ];
+     [ anx*0.03561 ];
+     [ mot*-0.42434 ];
+     ![ sup*-0.39454 ];
+
+     st118q1n1*0.39200;
+     st118q1n2*0.35205;
+     st118q1n3*0.36165;
+     st118q1n4*0.42864;
+     st118q1n5*0.69262;
+     st119q1n1*0.19983;
+     st119q1n2*0.20419;
+     st119q1n3*0.30638;
+     st119q1n4*0.58822;
+     st119q1n5*0.22997;
+     !s123q1n1*0.41974;
+     !s123q1n2*0.22023;
+     !s123q1n3*0.20026;
+     !s123q1n4*0.27266;
+     anx*1.15370;
+     mot*1.19992;
+     !sup*1.57202;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 826:
+
+     anx BY st118q1n1@0.57564;
+     anx BY st118q1n2*0.56203;
+     anx BY st118q1n3*0.63534;
+     anx BY st118q1n4*0.64579;
+     anx BY st118q1n5*0.61197;
+     mot BY st119q1n1@0.45147;
+     mot BY st119q1n2*0.40403;
+     mot BY st119q1n3*0.56852;
+     mot BY st119q1n4*0.52966;
+     mot BY st119q1n5*0.63954;
+     !sup BY s123q1n1@0.49620;
+     !sup BY s123q1n2*0.51164;
+     !sup BY s123q1n3*0.56546;
+     !sup BY s123q1n4*0.52164;
+
+     st118q1n1 WITH st118q1n2*0.11454;
+     st119q1n1 WITH st119q1n2*0.06731;
+
+
+     [ st118q1n1@2.72437 ];
+     [ st118q1n2*2.86184 ];
+     [ st118q1n3*2.93041 ];
+     [ st118q1n4*2.61013 ];
+     [ st118q1n5*2.64343 ];
+     [ st119q1n1@3.76308 ];
+     [ st119q1n2*3.80942 ];
+     [ st119q1n3*3.69499 ];
+     [ st119q1n4*3.42629 ];
+     [ st119q1n5*3.34622 ];
+     ![ s123q1n1@3.45394 ];
+     ![ s123q1n2*3.60615 ];
+     ![ s123q1n3*3.45086 ];
+     ![ s123q1n4*3.50103 ];
+     [ anx*-0.04125 ];
+     [ mot*-0.49177 ];
+     ![ sup*-0.07134 ];
+
+     st118q1n1*0.34052;
+     st118q1n2*0.40423;
+     st118q1n3*0.31826;
+     st118q1n4*0.32384;
+     st118q1n5*0.40689;
+     st119q1n1*0.19402;
+     st119q1n2*0.16483;
+     st119q1n3*0.20835;
+     st119q1n4*0.30308;
+     st119q1n5*0.29722;
+     !s123q1n1*0.19196;
+     !s123q1n2*0.12315;
+     !s123q1n3*0.16804;
+     !s123q1n4*0.19013;
+     anx*0.99347;
+     mot*0.89411;
+     !sup*1.11666;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 840:
+
+     anx BY st118q1n1@0.59808;
+     anx BY st118q1n2*0.54447;
+     anx BY st118q1n3*0.65677;
+     anx BY st118q1n4*0.63206;
+     anx BY st118q1n5*0.59854;
+     mot BY st119q1n1@0.49649;
+     mot BY st119q1n2*0.43816;
+     mot BY st119q1n3*0.52028;
+     mot BY st119q1n4*0.48774;
+     mot BY st119q1n5*0.62274;
+     !sup BY s123q1n1@0.49576;
+     !sup BY s123q1n2*0.46283;
+     !sup BY s123q1n3*0.57435;
+     !sup BY s123q1n4*0.54363;
+
+     st118q1n1 WITH st118q1n2*0.09471;
+     st119q1n1 WITH st119q1n2*0.04836;
+
+
+     [ st118q1n1@2.76759 ];
+     [ st118q1n2*2.75839 ];
+     [ st118q1n3*2.87094 ];
+     [ st118q1n4*2.45516 ];
+     [ st118q1n5*2.84255 ];
+     [ st119q1n1@3.69145 ];
+     [ st119q1n2*3.79401 ];
+     [ st119q1n3*3.71932 ];
+     [ st119q1n4*3.44293 ];
+     [ st119q1n5*3.52275 ];
+     ![ s123q1n1@3.39404 ];
+     ![ s123q1n2*3.64249 ];
+     ![ s123q1n3*3.41579 ];
+     ![ s123q1n4*3.52129 ];
+     [ anx*-0.06942 ];
+     [ mot*-0.41122 ];
+     ![ sup*0.01252 ];
+
+     st118q1n1*0.34848;
+     st118q1n2*0.52665;
+     st118q1n3*0.33772;
+     st118q1n4*0.35988;
+     st118q1n5*0.43347;
+     st119q1n1*0.17776;
+     st119q1n2*0.14962;
+     st119q1n3*0.17649;
+     st119q1n4*0.29169;
+     st119q1n5*0.21648;
+     !s123q1n1*0.24941;
+     !s123q1n2*0.13550;
+     !s123q1n3*0.15854;
+     !s123q1n4*0.15462;
+     anx*1.06392;
+     mot*0.88815;
+     !sup*1.11127;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 858:
+
+     anx BY st118q1n1@0.54815;
+     anx BY st118q1n2*0.45003;
+     anx BY st118q1n3*0.59356;
+     anx BY st118q1n4*0.84862;
+     anx BY st118q1n5*0.81245;
+     mot BY st119q1n1@0.47636;
+     mot BY st119q1n2*0.34934;
+     mot BY st119q1n3*0.61854;
+     mot BY st119q1n4*0.48960;
+     mot BY st119q1n5*0.66252;
+     !sup BY s123q1n1@0.43892;
+     !sup BY s123q1n2*0.52735;
+     !sup BY s123q1n3*0.57070;
+     !sup BY s123q1n4*0.55750;
+
+     st118q1n1 WITH st118q1n2*0.06888;
+     st119q1n1 WITH st119q1n2*0.09938;
+
+
+     [ st118q1n1@2.73485 ];
+     [ st118q1n2*3.28485 ];
+     [ st118q1n3*2.81151 ];
+     [ st118q1n4*2.45278 ];
+     [ st118q1n5*2.73066 ];
+     [ st119q1n1@3.77751 ];
+     [ st119q1n2*3.84465 ];
+     [ st119q1n3*3.70066 ];
+     [ st119q1n4*2.97506 ];
+     [ st119q1n5*3.21364 ];
+     ![ s123q1n1@3.55932 ];
+     ![ s123q1n2*3.57590 ];
+     ![ s123q1n3*3.46877 ];
+     ![ s123q1n4*3.46614 ];
+     [ anx*0.15257 ];
+     [ mot*-1.03053 ];
+     ![ sup*-0.10704 ];
+
+     st118q1n1*0.46951;
+     st118q1n2*0.45840;
+     st118q1n3*0.49019;
+     st118q1n4*0.49681;
+     st118q1n5*0.42655;
+     st119q1n1*0.34303;
+     st119q1n2*0.30591;
+     st119q1n3*0.39041;
+     st119q1n4*0.70253;
+     st119q1n5*0.40997;
+     !s123q1n1*0.21450;
+     !s123q1n2*0.14738;
+     !s123q1n3*0.18851;
+     !s123q1n4*0.22700;
+     anx*0.65087;
+     mot*0.85760;
+     !sup*1.22967;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 970:
+
+     anx BY st118q1n1@0.55357;
+     anx BY st118q1n2*0.53100;
+     anx BY st118q1n3*0.72454;
+     anx BY st118q1n4*0.69535;
+     anx BY st118q1n5*0.52983;
+     mot BY st119q1n1@0.56842;
+     mot BY st119q1n2*0.43589;
+     mot BY st119q1n3*0.51481;
+     mot BY st119q1n4*0.47035;
+     mot BY st119q1n5*0.54826;
+     !sup BY s123q1n1@0.40796;
+     !sup BY s123q1n2*0.45627;
+     !sup BY s123q1n3*0.59069;
+     !sup BY s123q1n4*0.59399;
+
+     st118q1n1 WITH st118q1n2*0.14120;
+     st119q1n1 WITH st119q1n2*0.01115;
+
+     [ st118q1n1@2.77253 ];
+     [ st118q1n2*3.02825 ];
+     [ st118q1n3*2.72963 ];
+     [ st118q1n4*2.62160 ];
+     [ st118q1n5*2.69000 ];
+     [ st119q1n1@3.47278 ];
+     [ st119q1n2*3.83058 ];
+     [ st119q1n3*3.71402 ];
+     [ st119q1n4*3.35262 ];
+     [ st119q1n5*3.58120 ];
+     ![ s123q1n1@3.09756 ];
+     ![ s123q1n2*3.55962 ];
+     ![ s123q1n3*3.45998 ];
+     ![ s123q1n4*3.54342 ];
+     [ anx*-0.06138 ];
+     [ mot*-0.92337 ];
+     ![ sup*-0.24931 ];
+
+     st118q1n1*0.35773;
+     st118q1n2*0.37348;
+     st118q1n3*0.23182;
+     st118q1n4*0.25206;
+     st118q1n5*0.42944;
+     st119q1n1*0.34537;
+     st119q1n2*0.18962;
+     st119q1n3*0.23353;
+     st119q1n4*0.36040;
+     st119q1n5*0.30835;
+     !s123q1n1*0.28381;
+     !s123q1n2*0.23627;
+     !s123q1n3*0.14279;
+     !s123q1n4*0.14823;
+     anx*0.76997;
+     mot*0.78830;
+     !sup*0.74314;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 971:
+
+     anx BY st118q1n1@0.55686;
+     anx BY st118q1n2*0.32209;
+     anx BY st118q1n3*0.76914;
+     anx BY st118q1n4*0.65140;
+     anx BY st118q1n5*0.57436;
+     mot BY st119q1n1@0.48250;
+     mot BY st119q1n2*0.30995;
+     mot BY st119q1n3*0.57635;
+     mot BY st119q1n4*0.48548;
+     mot BY st119q1n5*0.67651;
+     !sup BY s123q1n1@0.39485;
+     !sup BY s123q1n2*0.51838;
+     !sup BY s123q1n3*0.57817;
+     !sup BY s123q1n4*0.56752;
+
+     st118q1n1 WITH st118q1n2*0.12047;
+     st119q1n1 WITH st119q1n2*0.11134;
+
+
+     [ st118q1n1@2.88809 ];
+     [ st118q1n2*3.27097 ];
+     [ st118q1n3*2.82350 ];
+     [ st118q1n4*2.44257 ];
+     [ st118q1n5*2.57908 ];
+     [ st119q1n1@3.69825 ];
+     [ st119q1n2*3.89160 ];
+     [ st119q1n3*3.55899 ];
+     [ st119q1n4*3.22514 ];
+     [ st119q1n5*3.56147 ];
+     ![ s123q1n1@3.57666 ];
+     ![ s123q1n2*3.51679 ];
+     ![ s123q1n3*3.47782 ];
+     ![ s123q1n4*3.50111 ];
+     [ anx*0.06157 ];
+     [ mot*-1.34563 ];
+    ! [ sup*-0.11119 ];
+
+     st118q1n1*0.43400;
+     st118q1n2*0.48231;
+     st118q1n3*0.45233;
+     st118q1n4*0.51752;
+     st118q1n5*0.60888;
+     st119q1n1*0.42156;
+     st119q1n2*0.32063;
+     st119q1n3*0.45018;
+     st119q1n4*0.60351;
+     st119q1n5*0.28675;
+     !s123q1n1*0.24256;
+     !s123q1n2*0.18938;
+     !s123q1n3*0.17829;
+     !s123q1n4*0.23642;
+     anx*0.84588;
+     mot*1.12042;
+     !sup*1.07576;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 972:
+
+     anx BY st118q1n1@0.58820;
+     anx BY st118q1n2*0.46987;
+     anx BY st118q1n3*0.70315;
+     anx BY st118q1n4*0.68949;
+     anx BY st118q1n5*0.58193;
+     mot BY st119q1n1@0.50532;
+     mot BY st119q1n2*0.41674;
+     mot BY st119q1n3*0.55431;
+     mot BY st119q1n4*0.48740;
+     mot BY st119q1n5*0.65182;
+     !sup BY s123q1n1@0.48816;
+     !sup BY s123q1n2*0.44607;
+     !sup BY s123q1n3*0.60485;
+     !sup BY s123q1n4*0.53602;
+
+     st118q1n1 WITH st118q1n2*0.12627;
+     st119q1n1 WITH st119q1n2*0.05273;
+
+
+     [ st118q1n1@2.76115 ];
+     [ st118q1n2*2.76511 ];
+     [ st118q1n3*2.87345 ];
+     [ st118q1n4*2.47382 ];
+     [ st118q1n5*2.77711 ];
+     [ st119q1n1@3.69852 ];
+     [ st119q1n2*3.80432 ];
+     [ st119q1n3*3.66248 ];
+     [ st119q1n4*3.45678 ];
+     [ st119q1n5*3.50136 ];
+     ![ s123q1n1@3.45366 ];
+     ![ s123q1n2*3.65368 ];
+     ![ s123q1n3*3.40148 ];
+     ![ s123q1n4*3.51733 ];
+     [ anx*-0.17274 ];
+     [ mot*-0.51542 ];
+     ![ sup*0.07665 ];
+
+     st118q1n1*0.32784;
+     st118q1n2*0.56068;
+     st118q1n3*0.27296;
+     st118q1n4*0.27184;
+     st118q1n5*0.42571;
+     st119q1n1*0.18938;
+     st119q1n2*0.15220;
+     st119q1n3*0.24253;
+     st119q1n4*0.28660;
+     st119q1n5*0.21509;
+    ! s123q1n1*0.19698;
+    ! s123q1n2*0.13118;
+     !s123q1n3*0.15820;
+     !s123q1n4*0.15593;
+     anx*1.09770;
+     mot*0.93291;
+     !sup*0.92210;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+model 973:
+
+     anx BY st118q1n1@0.60362;
+     anx BY st118q1n2*0.52734;
+     anx BY st118q1n3*0.69668;
+     anx BY st118q1n4*0.63552;
+     anx BY st118q1n5*0.59027;
+     mot BY st119q1n1@0.52120;
+     mot BY st119q1n2*0.42758;
+     mot BY st119q1n3*0.50891;
+     mot BY st119q1n4*0.48909;
+     mot BY st119q1n5*0.63774;
+     !sup BY s123q1n1@0.49079;
+     !sup BY s123q1n2*0.43103;
+     !sup BY s123q1n3*0.60836;
+     !sup BY s123q1n4*0.52891;
+
+     st118q1n1 WITH st118q1n2*0.10114;
+     st119q1n1 WITH st119q1n2*0.03480;
+
+
+     [ st118q1n1@2.77909 ];
+     [ st118q1n2*2.66515 ];
+     [ st118q1n3*2.88226 ];
+     [ st118q1n4*2.41948 ];
+     [ st118q1n5*2.84289 ];
+     [ st119q1n1@3.68812 ];
+     [ st119q1n2*3.79374 ];
+     [ st119q1n3*3.70495 ];
+     [ st119q1n4*3.45012 ];
+     [ st119q1n5*3.52880 ];
+     ![ s123q1n1@3.40831 ];
+     ![ s123q1n2*3.65626 ];
+     ![ s123q1n3*3.40328 ];
+     ![ s123q1n4*3.52749 ];
+     [ anx*-0.06413 ];
+     [ mot*-0.30949 ];
+     ![ sup*0.07961 ];
+
+     st118q1n1*0.33330;
+     st118q1n2*0.54134;
+     st118q1n3*0.32678;
+     st118q1n4*0.36513;
+     st118q1n5*0.46275;
+     st119q1n1*0.14827;
+     st119q1n2*0.13594;
+     st119q1n3*0.16781;
+     st119q1n4*0.29808;
+     st119q1n5*0.18822;
+     !s123q1n1*0.24139;
+     !s123q1n2*0.12623;
+     !s123q1n3*0.13725;
+     !s123q1n4*0.13505;
+     anx*1.07718;
+     mot*0.84842;
+     !sup*0.97022;
+!mot on sup;
+!anx on sup;
+mot with anx;
+!sup on ESCS;
+PV1MATH on mot anx ESCS;
+
+Output:
+TECH1 stdyx;
